@@ -32,6 +32,7 @@ public class homeController {
 	public ModelAndView AddStudentView(ModelAndView mv) {
 		StudentDto obj = new StudentDto();
 		mv.addObject("obj", obj);
+		mv.addObject("title", "Add New Student");
 		mv.setViewName("add");
 		return mv;
 	}
@@ -51,6 +52,7 @@ public class homeController {
 		StudentDto obj = StudentService.findById(id);
 		ModelAndView mv = new ModelAndView("add");
 		mv.addObject("obj", obj);
+		mv.addObject("title", "Update Student");
 		System.out.println(obj);
 		return mv;
 	}
@@ -59,5 +61,11 @@ public class homeController {
 	public ModelAndView deleteStudent(@RequestParam("idStudent") int id) {
 		StudentService.delete(id);
 		return new ModelAndView("redirect:/list");
+	}
+	@RequestMapping(value="/search" , method=RequestMethod.GET)
+	public ModelAndView searchByName(@RequestParam ("name") String name) {
+		ModelAndView mav = new ModelAndView("searchById");
+	    mav.addObject("listStudent", StudentService.findByName(name));  
+		return mav;
 	}
 }

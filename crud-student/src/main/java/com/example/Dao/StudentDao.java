@@ -42,4 +42,11 @@ public class StudentDao implements IStudentDao {
 		return _jdbcTemplate.update(sql, obj.getName(), obj.getAge(), obj.getClassStudent(), obj.getIdStudent());
 	}
 
+	public List<StudentDto> findByName(String name) {
+		List<StudentDto> listStudent = new ArrayList<StudentDto>();
+		String sql = "select * from student where name like" + "'%"+name+"%'";
+		listStudent = _jdbcTemplate.query(sql, new StudentMapper());
+		return listStudent;
+	}
+
 }

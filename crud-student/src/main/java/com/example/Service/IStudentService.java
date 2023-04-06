@@ -22,4 +22,7 @@ public interface IStudentService {
 	
 	@Autowired
 	public StudentDto findById(int idStudent);
+	
+	@Autowired
+	public List<StudentDto> findByName(String name);
 }

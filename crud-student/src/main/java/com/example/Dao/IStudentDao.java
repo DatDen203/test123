@@ -10,6 +10,8 @@ public interface IStudentDao {
 	public int insert(StudentDto obj);
 	
 	public StudentDto findById(int idStudent);
+	
+	public List<StudentDto> findByName(String name);
 
 	public int update(StudentDto obj);
 	

@@ -33,4 +33,8 @@ public class StudentServiceImpl implements IStudentService{
 		return dao.delete(id);
 	}
 
+	public List<StudentDto> findByName(String name) {
+		return dao.findByName(name);
+	}
+
 }
