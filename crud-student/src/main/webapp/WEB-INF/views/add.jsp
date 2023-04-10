@@ -51,9 +51,30 @@
 											cssClass="form-control form-control-lg" />
 									</div>
 								</div>
+								
+								<%-- <div class="row align-items-center py-3">
+									<div class="col-md-3 ps-5">
+										<h6 class="mb-0">Email address</h6>
+									</div>
+									<div class="col-md-9 pe-5">
+										<form:input path="email"
+											cssClass="form-control form-control-lg" />
+									</div>
+								</div>
+								
+								<div class="row align-items-center py-3">
+									<div class="col-md-3 ps-5">
+										<h6 class="mb-0">Phone number</h6>
+									</div>
+									<div class="col-md-9 pe-5">
+										<form:input path="phone"
+											cssClass="form-control form-control-lg" />
+									</div>
+								</div> --%>
+								
 								<hr class="mx-n3">
 								<div class="text-center">
-									<button type="submit" class="btn btn-success">Success</button>
+									<button type="submit" class="btn btn-success" style="width: 200px; height: 40px;margin: 20px;">SAVE</button>
 								</div>
 							</div>
 						</div>

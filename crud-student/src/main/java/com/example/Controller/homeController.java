@@ -2,6 +2,7 @@ package com.example.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,9 @@ public class homeController {
 	StudentServiceImpl StudentService;
 
 	@RequestMapping(value = "/home-page")
-	public String wellcome() {
-		return "home-page";
+	public ModelAndView wellcome(ModelAndView mav) {
+		mav.addObject("msg", "Nguyen Tien Dat");
+		return mav;
 	}
 
 	@RequestMapping(value = "/list")
@@ -64,7 +66,7 @@ public class homeController {
 	}
 	@RequestMapping(value="/search" , method=RequestMethod.GET)
 	public ModelAndView searchByName(@RequestParam ("name") String name) {
-		ModelAndView mav = new ModelAndView("searchById");
+		ModelAndView mav = new ModelAndView("list");
 	    mav.addObject("listStudent", StudentService.findByName(name));  
 		return mav;
 	}
