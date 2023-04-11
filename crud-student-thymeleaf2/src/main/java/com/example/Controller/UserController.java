@@ -64,7 +64,6 @@ public class UserController {
 		case USERNAME_NOT_FOUND:
 			message = "Username is required";
 			mav.addObject("msgUsername", message);
-			break;
 		case PASSWORD_NOT_FOUND:
 			message = "Password is required"; 
 			mav.addObject("msgPassword", message);
