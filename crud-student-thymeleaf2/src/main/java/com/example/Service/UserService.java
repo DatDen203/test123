@@ -28,4 +28,8 @@ public class UserService implements IUserService{
 		return dao.getUserByUsername(username);
 	}
 
+	public String validateReigister(UserDto obj) {
+		return dao.validateReigister(obj);
+	}
+
 }

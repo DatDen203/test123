@@ -45,7 +45,7 @@ public class HomeController {
 		if (obj.getIdStudent() == null) {
 			StudentService.insert(obj);
 		} else {
-			StudentService.update(obj);
+			StudentService.update(obj);	
 		}
 		return new ModelAndView("redirect:/list");
 	}

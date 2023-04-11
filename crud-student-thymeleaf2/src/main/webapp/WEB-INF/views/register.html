@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Register</title>
 <!-- MDB -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
@@ -93,26 +93,31 @@ body {
 						</div>
 						<!-- Name input -->
 						<div class=" mb-4">
-							<label class="form-label" for="registerName">Full Name</label> <input
-								type="text" name="name" class="form-control" />
+							<label class="form-label is-invalid" for="registerName">Full Name</label> 
+							<input type="text" name="name" class="form-control"/>
+							<span class="text-danger" th:text="${msgFullname}"></span>
 						</div>
 
 						<!-- Username input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerUsername">Username</label>
 							<input type="text" name="username" class="form-control" />
+							<span class="text-danger" th:text="${msgUsername}"></span>
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerPassword">Password</label>
 							<input type="password" name="pass" class="form-control" />
+							<span class="text-danger" th:text="${msgPassword}"></span>
+							<!-- <span th:if="${param.password == null}" class="text-danger">Password is required</span> -->
 						</div>
 
 						<!-- Email input -->
 						<div class=" mb-4">
-							<label class="form-label" for="registerEmail">Email</label> <input
-								type="email" name="email" class="form-control" />
+							<label class="form-label" for="registerEmail">Email</label> 
+							<input type="text" name="email" class="form-control" />
+							<span class="text-danger" th:text="${msgEmail}"></span>
 						</div>
 
 						<!-- Repeat Password input -->

@@ -8,4 +8,5 @@ public interface IUserDao {
 	public UserDto validateLogin(UserLogin obj);	
 	public int update(UserDto obj);
 	public UserDto getUserByUsername(String username);
+	public String validateReigister(UserDto obj);
 }

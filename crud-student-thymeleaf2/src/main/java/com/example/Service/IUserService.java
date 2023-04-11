@@ -10,6 +10,9 @@ import com.example.Model.UserLogin;
 public interface IUserService {
 	@Autowired
 	public int register(UserDto obj);
+	
+	@Autowired
+	public String validateReigister(UserDto obj);
 
 	@Autowired
 	public UserDto validateLogin(UserLogin obj);

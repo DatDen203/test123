@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
 <!-- MDB -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
@@ -59,11 +59,11 @@ body {
 
 }
 </style>
-<script th:inline="javascript">
+<!-- <script th:inline="javascript">
 	function notificationRegister() {
 		alert("[[${obj}]]");
 	}
-</script>
+</script> -->
 </head>
 
 <body>
@@ -105,16 +105,25 @@ body {
 
 						<p class="text-center">or:</p>
 
-						<!-- Email input -->
+					    <span class="text-danger" th:text="${msg}"></span>
+						<!-- Username input -->
 						<div class=" mb-4">
-							<label class="form-label" for="loginName">Username</label> <input
-								type="text" name="username" class="form-control" />
+							<label class="form-label" for="loginName">Username</label> 
+							<input type="text" name="username" class="form-control" id="username" />
+							<span class="text-danger" th:text="${msgUsername}"></span>
+							
+							<!-- <span th:if="${isSubmitted && param.username == null}" class="text-danger">Password is required</span> -->
+							<!-- <div th:if="${isSubmitted && #fields.hasErrors('username')}" class="text-danger">
+                                 <span th:errors="*{username}">Username is required</span>
+                            </div> -->
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
-							<label class="form-label" for="loginPassword">Password</label> <input
-								type="password" name="pass" class="form-control" />
+							<label class="form-label" for="loginPassword">Password</label> 
+							<input type="password" name="pass" class="form-control" id="password"/>
+							<span class="text-danger" th:text="${msgPassword}"></span>
+							<!-- <span th:if="${isSubmitted && param.password == null}" class="text-danger">Password is required</span> -->
 						</div>
 
 						<!-- 2 column grid layout -->
@@ -122,9 +131,10 @@ body {
 							<div class="col-md-6 d-flex justify-content-center">
 								<!-- Checkbox -->
 								<div class="form-check mb-3 mb-md-0">
-									<input class="form-check-input" type="checkbox" value=""
-										id="loginCheck" checked /> <label class="form-check-label"
-										for="loginCheck"> Remember me </label>
+									<input class="form-check-input" type="checkbox" value="" id="loginCheck" checked /> 
+										<label class="form-check-label"
+										for="loginCheck"> Remember me 
+										</label>
 								</div>
 							</div>
 
@@ -136,7 +146,7 @@ body {
 
 						<!-- Submit button -->
 						<button type="submit" class="btn btn-primary btn-block mb-4"
-							onclick="notificationRegister">Sign in</button>
+							>Sign in</button>
 
 						<!-- Register buttons -->
 						<div class="text-center">
@@ -144,8 +154,7 @@ body {
 								Not a member? <a th:href="@{/register}">Register</a>
 							</p>
 						</div>
-					</form>
-					<h3 th:text="${msg}"></h3>
+					</form>	
 				</div>
 			</div>
 			<!-- Pills content -->

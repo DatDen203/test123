@@ -16,9 +16,9 @@ public class UserDao implements IUserDao {
 
 	public int register(UserDto obj) {
 		String sql = "INSERT INTO user (name, username, email,pass) VALUES (?,?,?,?)";
-		return _jdbcTemplate.update(sql,obj.getName(), obj.getUsername(), obj.getEmail(), obj.getPass());
+		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getPass());
 	}
-
+	
 	public UserDto validateLogin(UserLogin obj) {
 		String sql = "select * from user where username='" + obj.getUsername() + "' and pass='" + obj.getPass() + "'";
 		List<UserDto> count = _jdbcTemplate.query(sql, new UserMapper());
@@ -32,7 +32,20 @@ public class UserDao implements IUserDao {
 
 	public UserDto getUserByUsername(String username) {
 		String sql = "select * from user where username=?";
-		return _jdbcTemplate.queryForObject(sql,new UserMapper(), new Object[] {username});
+		return _jdbcTemplate.queryForObject(sql, new UserMapper(), new Object[] { username });
+	}
+
+	public String validateReigister(UserDto obj) {
+		int count = _jdbcTemplate.queryForObject("select count(*) from user where username=?", Integer.class,
+				obj.getUsername());
+		if (count == 1) {
+			return "Error username";
+		}
+		count = _jdbcTemplate.queryForObject("select count(*) from user where email=?", Integer.class, obj.getEmail());
+		if (count == 1) {
+			return "Error email";
+		}
+		return "true";
 	}
 
 }
