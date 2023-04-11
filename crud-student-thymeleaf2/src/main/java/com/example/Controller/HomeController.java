@@ -2,7 +2,6 @@ package com.example.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +17,9 @@ public class HomeController {
 	@Autowired
 	StudentServiceImpl StudentService;
 
-	@RequestMapping("/homepage")
-	public String index(final Model model) {
-		model.addAttribute("message", "hello");
-		return "homepage";
+	@RequestMapping("/")
+	public ModelAndView home() {
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping(value = "/list")
