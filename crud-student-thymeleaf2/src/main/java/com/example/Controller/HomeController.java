@@ -26,6 +26,8 @@ public class HomeController {
 	public ModelAndView student() {
 		ModelAndView mv = new ModelAndView("list");
 		mv.addObject("listStudent", StudentService.GetListStudent());
+		System.out.println("1");
+
 		return mv;
 	}
 
