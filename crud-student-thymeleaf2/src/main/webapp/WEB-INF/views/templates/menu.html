@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="menu">
+        <div class="container" style="margin: 0px" >
+            <a class="navbar-brand" href="#!">Start Manager</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 1050px">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" th:href="@{list}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" th:href="@{about}">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" th:href="@{services}">Services</a></li>	
+                    <li class="nav-item"><a class="nav-link active" th:href="@{register}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link active" th:href="@{login}">
+                    	<img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/8787/8787768.png" alt="Log Out" ></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

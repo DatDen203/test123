@@ -22,12 +22,15 @@ public class HomeController {
 		return new ModelAndView("redirect:/login");
 	}
 
+	@RequestMapping("/about")
+	public ModelAndView about() {
+		return new ModelAndView("about");
+	}
+	
 	@RequestMapping(value = "/list")
 	public ModelAndView student() {
 		ModelAndView mv = new ModelAndView("list");
 		mv.addObject("listStudent", StudentService.GetListStudent());
-		System.out.println("1");
-
 		return mv;
 	}
 

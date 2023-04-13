@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>About</title>
+<th:block th:insert="~{/templates/head::link}"> </th:block>
+<th:block th:insert="~{/templates/head::script}"> </th:block>
+</head>
+<body>
+	<th:block th:insert="~{/templates/menu::menu}"></th:block>
+	<th:block th:insert="~{/templates/head::content}"></th:block>
+	<div th:replace="~{/templates/footer::#footer}"></div>
+</body>
+</html>
