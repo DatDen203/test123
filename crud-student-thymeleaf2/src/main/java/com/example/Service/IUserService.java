@@ -19,7 +19,8 @@ public interface IUserService {
 
 	@Autowired
 	public int update(UserDto obj);
-	
+
+
 	@Autowired
-	public UserDto getUserByUsername(String username);
+	public UserDto findUserByEmail(String email);
 }
