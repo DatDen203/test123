@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Pass</title>
+
+<!-- MDB -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+<!-- Font Awesome -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet" />
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+	rel="stylesheet" />
+
+<style type="text/css">
+.gradient-custom {
+	/* fallback for old browsers */
+	background: #fa709a;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to bottom right, rgba(250, 112, 154, 1),
+		rgba(254, 225, 64, 1));
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to bottom right, rgba(250, 112, 154, 1),
+		rgba(254, 225, 64, 1))
+}
+
+body {
+	height: 100%;
+}
+
+.parent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image:
+		url("https://anhdepfree.com/wp-content/uploads/2018/08/hinh-nen-wallpaper-dep-cho-may-tinh-2.jpg");
+	min-height: 750px;
+}
+
+.child {
+	width: 28rem;
+	min-height: 500px;
+	padding: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+	<!-- Pills navs -->
+	<div class="parent">
+
+		<div class="tab-content">
+			<div class="tab-pane fade show active" id="pills-login"
+				role="tabpanel" aria-labelledby="tab-login">
+				<form th:action="@{/searchAccount}" method="GET" th:object="${obj}" >
+					<div class="card text-center" style="width: 300px;">
+						<div class="card-header h5 text-white bg-primary">Find Your Account</div>
+						<div class="card-body px-5">
+							<p class="card-text">Please enter your email address to search for your account.</p>
+							<span class="text-danger" th:text="${err}"></span>
+							<input type="email" name="email" class="form-control my-1" required="required"/> 
+							<button type="submit"  class="btn btn-primary w-100 my-1">Search</button>
+							<div class="d-flex justify-content-between mt-4">
+								<a class="" th:href="@{login}">Login</a> <a class="" th:href="@{register}">Register</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

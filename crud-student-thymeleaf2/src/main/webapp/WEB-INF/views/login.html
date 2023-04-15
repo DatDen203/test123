@@ -79,7 +79,7 @@ body {
 			<div class="tab-content">
 				<div class="tab-pane fade show active" id="pills-login"
 					role="tabpanel" aria-labelledby="tab-login">
-					<form th:action="@{doLogin}" method="POST" th:object="${user}">
+					<form th:action="@{doLogin}" method="POST">
 						<div class="text-center mb-3">
 							<p>Sign in with:</p>
 							<button type="button" class="btn btn-secondary btn-floating mx-1">
@@ -107,11 +107,6 @@ body {
 							<label class="form-label" for="loginName">Username</label> 
 							<input type="text" name="username" class="form-control" id="username" />
 							<span class="text-danger" th:text="${msgUsername}"></span>
-							
-							<!-- <span th:if="${isSubmitted && param.username == null}" class="text-danger">Password is required</span> -->
-							<!-- <div th:if="${isSubmitted && #fields.hasErrors('username')}" class="text-danger">
-                                 <span th:errors="*{username}">Username is required</span>
-                            </div> -->
 						</div>
 
 						<!-- Password input -->
@@ -136,7 +131,7 @@ body {
 
 							<div class="col-md-6 d-flex justify-content-center">
 								<!-- Simple link -->
-								<a href="#!">Forgot password?</a>
+								<a th:href="@{formSearch}">Forgot password?</a>
 							</div>
 						</div>
 

@@ -1,5 +1,7 @@
 package com.example.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,13 +20,9 @@ public class UserController {
 	UserService userService;
 
 	enum validateResult {
-		FULLNAME_NOT_FOUND("Fullname is required"), 
-		USERNAME_NOT_FOUND("Username is required"),
-		USERNAME_EXISTED("Username already exists"), 
-		PASSWORD_NOT_FOUND("Password is required"),
-		EMAIL_NOT_FOUND("Email is required"), 
-		EMAIL_EXISTED("Email already exists"), 
-		EMAIL_INVALID("Invalid email"),
+		FULLNAME_NOT_FOUND("Fullname is required"), USERNAME_NOT_FOUND("Username is required"),
+		USERNAME_EXISTED("Username already exists"), PASSWORD_NOT_FOUND("Password is required"),
+		EMAIL_NOT_FOUND("Email is required"), EMAIL_EXISTED("Email already exists"), EMAIL_INVALID("Invalid email"),
 		FAIL("Incorrect login information!");
 
 		String message;
@@ -35,9 +33,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@ModelAttribute UserDto obj) {
+	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("login");
-		mav.addObject("obj", obj);
 		return mav;
 	}
 
@@ -68,17 +65,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView register(@ModelAttribute UserDto obj) {
+	public ModelAndView registerForm(@ModelAttribute UserDto obj) {
 		ModelAndView mav = new ModelAndView("register");
 		mav.addObject("obj", obj);
 		return mav;
 	}
 
 	@RequestMapping(value = "/doRegister", method = RequestMethod.POST)
-	public ModelAndView register(@ModelAttribute UserDto obj, @RequestParam String username) {
+	public ModelAndView register(@ModelAttribute UserDto obj) {
 
 		ModelAndView mav = new ModelAndView("register");
-		String message = "";
 		validateResult result = null;
 
 		if (obj.getName().equals("")) {
@@ -96,13 +92,12 @@ public class UserController {
 		if (obj.getEmail().equals("")) {
 			result = validateResult.EMAIL_NOT_FOUND;
 			mav.addObject("msgEmail", result.message);
-		} 
-		else if (!obj.getEmail().endsWith("@gmail.com")) {
+		} else if (!obj.getEmail().endsWith("@gmail.com")) {
 			result = validateResult.EMAIL_INVALID;
 			mav.addObject("msgEmail", result.message);
 		}
 
-		if(result == null) {
+		if (result == null) {
 			String check = userService.validateReigister(obj);
 			if (check.equals("true")) {
 				userService.register(obj);
@@ -117,4 +112,22 @@ public class UserController {
 		return mav;
 	}
 
+	@RequestMapping(value = "formSearch", method = RequestMethod.GET)
+	public ModelAndView formSearch(ModelAndView mav) {
+		mav = new ModelAndView("searchAccount");
+		return mav;
+	}
+
+	@RequestMapping(value = "searchAccount", method = RequestMethod.GET)
+	public ModelAndView SearchAcc(ModelAndView mav, @RequestParam("email") String email) {
+		UserDto obj = userService.findUserByEmail(email);
+		if (obj == null) {
+			mav = new ModelAndView("searchAccount");
+			mav.addObject("err", "User Email does not exist");
+		} else {
+			mav = new ModelAndView("redirect:/changePass");
+			mav.addObject("obj", obj);
+		}
+		return mav;
+	}
 }
