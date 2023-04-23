@@ -26,7 +26,7 @@ public class HomeController {
 	public ModelAndView about() {
 		return new ModelAndView("about");
 	}
-	
+
 	@RequestMapping(value = "/list")
 	public ModelAndView student() {
 		ModelAndView mv = new ModelAndView("list");
@@ -45,10 +45,14 @@ public class HomeController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) {
-		if (obj.getIdStudent() == null) {
-			StudentService.insert(obj);
-		} else {
-			StudentService.update(obj);	
+		try {
+			if (obj.getIdStudent()==null) {
+				StudentService.insert(obj);
+			} else {
+				StudentService.update(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return new ModelAndView("redirect:/list");
 	}
@@ -59,7 +63,6 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("add");
 		mv.addObject("obj", obj);
 		mv.addObject("title", "Update Student");
-		System.out.println(obj);
 		return mv;
 	}
 

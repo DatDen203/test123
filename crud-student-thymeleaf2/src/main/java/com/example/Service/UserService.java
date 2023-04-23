@@ -24,12 +24,12 @@ public class UserService implements IUserService{
 		return dao.update(obj);
 	}
 
-	public UserDto getUserByUsername(String username) {
-		return dao.getUserByUsername(username);
-	}
-
 	public String validateReigister(UserDto obj) {
 		return dao.validateReigister(obj);
+	}
+
+	public UserDto findUserByEmail(String email) {
+		return dao.findUserByEmail(email);
 	}
 
 }

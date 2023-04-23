@@ -21,8 +21,8 @@ public class StudentServiceImpl implements IStudentService{
 		return dao.insert(obj);
 	}
 
-	public StudentDto findById(int idStudent) {
-		return dao.findById(idStudent);
+	public StudentDto findById(int id) {
+		return dao.findById(id);
 	}
 
 	public int update(StudentDto obj) {

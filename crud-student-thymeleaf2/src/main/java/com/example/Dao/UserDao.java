@@ -3,6 +3,8 @@ package com.example.Dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -30,14 +32,8 @@ public class UserDao implements IUserDao {
 		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getIdUser());
 	}
 
-	public UserDto getUserByUsername(String username) {
-		String sql = "select * from user where username=?";
-		return _jdbcTemplate.queryForObject(sql, new UserMapper(), new Object[] { username });
-	}
-
 	public String validateReigister(UserDto obj) {
-		int count = _jdbcTemplate.queryForObject("select count(*) from user where username=?", Integer.class,
-				obj.getUsername());
+		int count = _jdbcTemplate.queryForObject("select count(*) from user where username=?", Integer.class, obj.getUsername());
 		if (count == 1) {
 			return "Error username";
 		}
@@ -48,4 +44,20 @@ public class UserDao implements IUserDao {
 		return "true";
 	}
 
+	public int ChangePass(UserDto obj) {
+		String sql = "update user set pass=? where email = ?";
+		return _jdbcTemplate.update(sql, obj.getPass(), obj.getEmail());
+	}
+
+	public UserDto findUserByEmail(String email) {
+		try {
+			String sql = "select * from user where email = '"+email+"'";
+			return _jdbcTemplate.queryForObject(sql, new UserMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		} catch (IncorrectResultSizeDataAccessException e) {
+			return null;
+		}
+		
+	}
 }

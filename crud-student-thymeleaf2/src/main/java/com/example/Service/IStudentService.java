@@ -21,7 +21,7 @@ public interface IStudentService {
 	public int delete(Integer id);
 	
 	@Autowired
-	public StudentDto findById(int idStudent);
+	public StudentDto findById(int id);
 	
 	@Autowired
 	public List<StudentDto> findByName(String name);

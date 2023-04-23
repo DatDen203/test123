@@ -31,8 +31,8 @@ public class StudentDao implements IStudentDao {
 		return _jdbcTemplate.update(sql);
 	}
 
-	public StudentDto findById(int idStudent) {
-		String sql = "select * from student where idStudent=" + idStudent;
+	public StudentDto findById(int id) {
+		String sql = "select * from student where idStudent=" + id;
 		return _jdbcTemplate.queryForObject(sql, new StudentMapper());
 	}
 
