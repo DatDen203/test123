@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.example.Model.UserDto;
 import com.example.Model.UserLogin;
-import com.example.Model.UserMapper;
 
 @Repository
 public class UserDao implements IUserDao {

@@ -73,7 +73,7 @@ body {
 			<div class="tab-content">
 				<div class="tab-pane fade show active" id="pills-login"
 					role="tabpanel" aria-labelledby="tab-login">
-					<form th:action="@{doRegister}" method="POST" th:object="${user}">
+					<form th:action="@{doRegister}" method="POST" th:object="${obj}">
 						<div class="text-center mb-3">
 							<button type="button" class="btn btn-secondary btn-floating mx-1">
 								<i class="fab fa-facebook-f"></i>
@@ -94,28 +94,28 @@ body {
 						<!-- Name input -->
 						<div class=" mb-4">
 							<label class="form-label is-invalid" for="registerName">Full Name</label> 
-							<input type="text" name="name" class="form-control"/>
+							<input type="text" name="name" class="form-control" th:field="*{name}"/>
 							<span class="text-danger" th:text="${msgFullname}"></span>
 						</div>
 
 						<!-- Username input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerUsername">Username</label>
-							<input type="text" name="username" class="form-control" />
+							<input type="text" name="username" class="form-control" th:field="*{username}" />
 							<span class="text-danger" th:text="${msgUsername}"></span>
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerPassword">Password</label>
-							<input type="password" name="pass" class="form-control" />
+							<input type="password" name="pass" class="form-control" th:field="*{pass}"/>
 							<span class="text-danger" th:text="${msgPassword}"></span>
 						</div>
 
 						<!-- Email input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerEmail">Email</label> 
-							<input type="text" name="email" class="form-control" />
+							<input type="text" name="email" class="form-control" th:filed="*{email}"/>
 							<span class="text-danger" th:text="${msgEmail}"></span>
 						</div>
 

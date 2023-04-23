@@ -75,7 +75,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/doRegister", method = RequestMethod.POST)
-	public ModelAndView register(@ModelAttribute UserDto obj, @RequestParam String username) {
+	public ModelAndView doregister(@ModelAttribute("obj") UserDto obj) {
 
 		ModelAndView mav = new ModelAndView("register");
 		String message = "";

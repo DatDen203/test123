@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com/example/Dao/UserDao">
+   <select id="selectAll" resultType="UserDto" resultMap="result">
+       SELECT * FROM user;
+   </select>
+   
+   <select id="selectUsernameAndPass" parameterType="string" resultType="UserDto" resultMap="result">
+       SELECT * FROM user WHERE username = #{username} AND pass = #{pass}
+   </select>
+   
+   <resultMap type="UserDto" id="result">
+       <result property="name" column="name"/>
+       <result property="username" column="username"/>
+        <result property="pass" column="pass"/>
+        <result property="email" column="email"/>
+        <result property="idUser" column="idUser"/>
+   </resultMap>
+</mapper>

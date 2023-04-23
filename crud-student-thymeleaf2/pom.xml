@@ -9,6 +9,7 @@
 	<name>crud-student-thymeleaf Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<mybatis.version>3.3.0</mybatis.version>
 	    <java.version>1.8</java.version>
 		<spring.version>5.0.2.RELEASE</spring.version>
 		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
@@ -29,7 +30,14 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>5.0.2.RELEASE</version>
 		</dependency>
-
+		
+        <!-- MyBatis-->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

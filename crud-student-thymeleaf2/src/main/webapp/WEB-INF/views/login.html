@@ -57,7 +57,6 @@ body {
 	margin-top: 20px;
 }
 
-}
 </style>
 
 </head>
@@ -79,7 +78,7 @@ body {
 			<div class="tab-content">
 				<div class="tab-pane fade show active" id="pills-login"
 					role="tabpanel" aria-labelledby="tab-login">
-					<form th:action="@{doLogin}" method="POST" th:object="${user}">
+					<form th:action="@{doLogin}" method="POST" th:object="${obj}">
 						<div class="text-center mb-3">
 							<p>Sign in with:</p>
 							<button type="button" class="btn btn-secondary btn-floating mx-1">
@@ -105,21 +104,15 @@ body {
 						<!-- Username input -->
 						<div class=" mb-4">
 							<label class="form-label" for="loginName">Username</label> 
-							<input type="text" name="username" class="form-control" id="username" />
+							<input type="text" name="username" class="form-control" id="username" th:filed="*{username}"/>
 							<span class="text-danger" th:text="${msgUsername}"></span>
-							
-							<!-- <span th:if="${isSubmitted && param.username == null}" class="text-danger">Password is required</span> -->
-							<!-- <div th:if="${isSubmitted && #fields.hasErrors('username')}" class="text-danger">
-                                 <span th:errors="*{username}">Username is required</span>
-                            </div> -->
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
 							<label class="form-label" for="loginPassword">Password</label> 
-							<input type="password" name="pass" class="form-control" id="password"/>
+							<input type="password" name="pass" class="form-control" id="password" th:filed="*{pass}"/>
 							<span class="text-danger" th:text="${msgPassword}"></span>
-							<!-- <span th:if="${isSubmitted && param.password == null}" class="text-danger">Password is required</span> -->
 						</div>
 
 						<!-- 2 column grid layout -->
