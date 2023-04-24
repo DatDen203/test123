@@ -17,20 +17,20 @@ public class StudentServiceImpl implements IStudentService{
 		return dao.GetListStudent();
 	}
 
-	public int insert(StudentDto obj) {
-		return dao.insert(obj);
+	public void insert(StudentDto obj) {
+		dao.insert(obj);
 	}
 
 	public StudentDto findById(int id) {
 		return dao.findById(id);
 	}
 
-	public int update(StudentDto obj) {
-		return dao.update(obj);
+	public void update(StudentDto obj) {
+		dao.update(obj);
 	}
 
-	public int delete(Integer id) {
-		return dao.delete(id);
+	public void delete(Integer id) {
+		dao.delete(id);
 	}
 
 	public List<StudentDto> findByName(String name) {

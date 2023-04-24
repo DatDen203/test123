@@ -1,5 +1,7 @@
 package com.example.Controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,7 +43,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-	public ModelAndView doLogin(@ModelAttribute("obj") UserLogin obj) {
+	public ModelAndView doLogin(@ModelAttribute("obj") UserLogin obj) throws IOException {
 		ModelAndView mav = new ModelAndView("login");
 		validateResult result = null;
 
@@ -103,11 +105,12 @@ public class UserController {
 
 		if(result == null) {
 			String check = userService.validateReigister(obj);
-			if (check.equals("true")) {
+			if (check.equals("Username and email not found")) {
 				userService.register(obj);
-			} else if (check.equals("Error username")) {
+				
+			} else if (check.equals("Username already exists")) {
 				result = validateResult.USERNAME_EXISTED;
-				mav.addObject("msgEmail", result.message);
+				mav.addObject("msgUsername", result.message);
 			} else if (check.equals("Error email")) {
 				result = validateResult.EMAIL_EXISTED;
 				mav.addObject("msgEmail", result.message);

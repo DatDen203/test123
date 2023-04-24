@@ -1,9 +1,11 @@
-package com.example.Model;
+package com.example.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.example.Model.StudentDto;
 
 public class StudentMapper implements RowMapper<StudentDto> {
 

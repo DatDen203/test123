@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com/example/Dao/UserDao">
+<mapper namespace="UserDao">
    <select id="selectAll" resultType="UserDto" resultMap="result">
        SELECT * FROM user;
    </select>
    
    <select id="selectUsernameAndPass" parameterType="string" resultType="UserDto" resultMap="result">
        SELECT * FROM user WHERE username = #{username} AND pass = #{pass}
+   </select>
+   
+   <select id="checkIfUsernameOrEmailExists" resultType="string">
+      SELECT CASE
+        WHEN EXISTS (SELECT * FROM user WHERE username = #{username})
+          THEN 'Username already exists'
+        WHEN EXISTS (SELECT * FROM user WHERE email = #{email})
+          THEN 'Email already exists'
+      ELSE
+          'Username and email not found'
+      END
+   </select>
+
+   <insert id="insertUser" parameterType="UserDto">
+        INSERT INTO user (idUser, name, username, email, pass)
+        VALUES (#{idUser}, #{name}, #{username}, #{email}, #{pass})
+   </insert>
+   
+   <update id="updateUser" parameterType="UserDto">
+       UPDATE user
+       SET pass= #{pass}, email = #{email}, name = #{name}, username = #{username}
+       WHERE idUser = #{idUser}
+    </update>
+   
+   
+   <select id="getUserByUsername" parameterType="string" resultType="UserDto">
+       SELECT * FROM user
+       WHERE username = #{username}
    </select>
    
    <resultMap type="UserDto" id="result">

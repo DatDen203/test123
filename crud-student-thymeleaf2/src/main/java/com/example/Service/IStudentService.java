@@ -12,13 +12,13 @@ public interface IStudentService {
 	public List<StudentDto> GetListStudent();
 
 	@Autowired
-	public int insert(StudentDto obj);
+	public void insert(StudentDto obj);
 
 	@Autowired
-	public int update(StudentDto obj);
+	public void update(StudentDto obj);
 	
 	@Autowired
-	public int delete(Integer id);
+	public void delete(Integer id);
 	
 	@Autowired
 	public StudentDto findById(int id);

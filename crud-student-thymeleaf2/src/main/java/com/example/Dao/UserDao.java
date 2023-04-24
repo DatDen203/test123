@@ -1,7 +1,9 @@
 package com.example.Dao;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.Model.StudentDto;
 import com.example.Model.UserDto;
 import com.example.Model.UserLogin;
 import com.example.util.MyBatisUtil;
@@ -24,9 +27,21 @@ public class UserDao implements IUserDao {
     
 	
 //	Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-	public int register(UserDto obj) {
-		String sql = "INSERT INTO user (name, username, email,pass) VALUES (?,?,?,?)";
-		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getPass());
+	public void register(UserDto obj) {
+//		String sql = "INSERT INTO user (name, username, email,pass) VALUES (?,?,?,?)";
+//		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getPass());
+		
+//		Map<String, String> paramMap = new HashMap<>();
+//		paramMap.put("idUser", obj.getIdUser());
+//		paramMap.put("username", obj.getUsername());
+//		paramMap.put("pass", obj.getPass());
+//		paramMap.put("email", obj.getEmail());
+//		paramMap.put("name", obj.getName());
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		session.insert("UserDao.insertUser", obj);
+		session.commit();
+		session.close();
 	}
 	
 	public UserDto validateLogin(UserLogin obj) {
@@ -41,33 +56,53 @@ public class UserDao implements IUserDao {
 		paramMap.put("pass", obj.getPass());
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		userDto = session.selectOne("selectUsernameAndPass", paramMap);
+		userDto = session.selectOne("UserDao.selectUsernameAndPass", paramMap);
 		session.commit();
 		session.close();
 		return userDto;
 	}
 
-	public int update(UserDto obj) {
-		String sql = "update user set name=?,username=?,email=? where idUser = ?";
-		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getIdUser());
+	public void update(UserDto obj) {
+//		String sql = "update user set name=?,username=?,email=? where idUser = ?";
+//		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getIdUser());
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		session.update("UserDao.updateUser", obj);
+		session.commit();
+		session.close();
 	}
 
-	public UserDto getUserByUsername(String username) {
-		String sql = "select * from user where username=?";
-		return _jdbcTemplate.queryForObject(sql, new UserMapper(), new Object[] { username });
+	public List<UserDto> getUserByUsername(String username) {
+//		String sql = "select * from user where username=?";
+//		return _jdbcTemplate.queryForObject(sql, new UserMapper(), new Object[] { username });
+		List<UserDto> listUser = new ArrayList<UserDto>();
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		listUser = session.selectList("UserDao.getUserByUsername", username);
+		session.commit();
+		session.close();
+		return null;
 	}
 
 	public String validateReigister(UserDto obj) {
-		int count = _jdbcTemplate.queryForObject("select count(*) from user where username=?", Integer.class,
-				obj.getUsername());
-		if (count == 1) {
-			return "Error username";
-		}
-		count = _jdbcTemplate.queryForObject("select count(*) from user where email=?", Integer.class, obj.getEmail());
-		if (count == 1) {
-			return "Error email";
-		}
-		return "true";
+//		int count = _jdbcTemplate.queryForObject("select count(*) from user where username=?", Integer.class,
+//				obj.getUsername());
+//		if (count == 1) {
+//			return "Error username";
+//		}
+//		count = _jdbcTemplate.queryForObject("select count(*) from user where email=?", Integer.class, obj.getEmail());
+//		if (count == 1) {
+//			return "Error email";
+//		}
+//		return "true";
+		
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("username", obj.getUsername());
+		paramMap.put("email", obj.getEmail());
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		String message = session.selectOne("UserDao.checkIfUsernameOrEmailExists", paramMap);
+		session.commit();
+		session.close();
+		return message;
 	}
 	public static void main(String[] args) throws IOException {
 //		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -85,7 +120,7 @@ public class UserDao implements IUserDao {
 		paramMap.put("pass", "123");
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		userDto = session.selectOne("selectUsernameAndPass", paramMap);
+		userDto = session.selectOne("UserDao.selectUsernameAndPass", paramMap);
 		session.commit();
 		session.close();
 		System.out.println(userDto);
