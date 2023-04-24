@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace ="com.example.Dao.TeacherMapper">
+  	<resultMap type="Teacher_mybatis" id="result">
+  		<id property="idTeacher" column="idTeacher"></id>
+  		<result property="name" column="name"/>
+  		<result property="major" column="major"/>
+  		<result property="age" column="age"/>
+  		<result property="classes" column="classes"/>
+  	</resultMap>
+  	<select id="getAllTeachers" resultType="Teacher_mybatis" resultMap="result"> 
+  		select * from teacher
+  	</select>
+  	
+  	<insert id = "insertTeacher" parameterType="Teacher_mybatis" keyProperty="idTeacher" useGeneratedKeys="true">
+  		INSERT INTO teacher (name, classes, major, age) 
+  		VALUES (#{name}, #{classes}, #{major}, #{age})
+  	</insert>
+  	
+  	<delete id = "deleteTeacher" parameterType="int">
+  		delete from teacher where idTeacher= #{idTeacher}
+  	
+  	</delete>
+  	
+  	<select id = "findById" parameterType ="int" resultType="Teacher_mybatis" resultMap="result">
+  		select * from teacher where idTeacher= #{idTeacher}
+  	</select>
+  	
+  	<update id="updateTeacher" parameterType="Teacher_mybatis">
+  		update student set name= #{name}, major = #{major}, age= #{age}, classes=#{classes} 
+  		where idTeacher = #{idTeacher}
+  	</update>
+  	
+  	<select id = "findByName" parameterType="String" resultType="Teacher_mybatis" resultMap="result">
+  		select * from teacher where name like #{'%name%'}
+  	</select>
+  </mapper>

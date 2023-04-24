@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<th:block th:insert="~{/templates/head::link}"></th:block>
+<th:block th:insert="~{/templates/head::script}"></th:block>
+</head>
+
+<script type="text/javascript">
+	function doDelete(id) {
+		if (confirm("are you sure to delete Student with ID=" + id)) {
+			window.location = "delete?idStudent=" + id;
+		}
+	}
+</script>
+
+<body>
+
+	<div th:replace="~{/templates/menu::menu}"> </div>
+
+	<div class="container-fluid"
+		style="margin: 0px; padding: 0px; max-width: 100%;">
+		<nav class="navbar navbar-light bg-light" style="width: 100%; padding: 7px 0px 7px 20px;">
+			<div class="container-fluid">
+				<div style="display: flex;">
+					<a class="navbar-brand" th:href="@{/list}">List Of Student</a> <a
+						th:href="@{/add}"> <img alt="img add"
+						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
+						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
+				</div>
+				<form th:action="@{/search}" method="GET" class="d-flex">
+					<input class="form-control me-2" name="name"
+						placeholder="search by name" style="width: 300px" />
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+				
+				<form th:action="@{/searchClass}" method="GET" class="d-flex">
+					<input class="form-control me-2" name="classStudent"
+						placeholder="search by class" style="width: 300px" />
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+
+			</div>
+		</nav>
+
+		<div class="badge bg-primary text-wrap"
+			style="width: 6rem; margin: 10px 0px 0px 25px"
+			th:text="'Count: '+${listStudent.size()}">Count:</div>
+		<div class="contentx">
+			<div class="item shadow p-3 bg-body rounded" style="height: 170px"
+				th:each="c:${listStudent}">
+				<div class="card-body">
+					<div class="img_item">
+						<img alt="img student"
+							src="https://cdn-icons-png.flaticon.com/512/9572/9572711.png"
+							class="img_student " data-bs-toggle="modal"
+							th:attr="data-bs-target='#detailsModal'+${c.idStudent}">
+					</div>
+					<div class="info_item">
+						<h6 class="card-subtitle mb-2 text-muted"
+							th:text="'ID: '+${c.idStudent}"></h6>
+						<h5 class="card-text a" th:text="'Name: '+${c.name}"></h5>
+						<h5 class="card-text a" th:text="'Age: '+${c.age}"></h5>
+						<h5 class="card-text a" th:text="'Classroom: '+${c.classStudent}"></h5>
+						<a th:href="@{/updateStudent/{id}(id=${c.idStudent})}"
+							class="btn btn-outline-success btn-sm"
+							style="height: 30px; margin-right: 10px;">Update</a> <a
+							class="btn btn-outline-danger btn-sm" style="height: 30px"
+							th:onclick="|doDelete('${c.idStudent}')|">Delete</a>
+					</div>
+				</div>
+				<!-- Modal Detail-->
+				<div class="modal fade" th:attr="id=${'detailsModal'+c.idStudent}"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Student's
+									details</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="img_item" style="width: 30%; margin-left: 30px">
+									<img alt="img student"
+										src="https://cdn-icons-png.flaticon.com/512/9572/9572711.png"
+										class="img_student">
+								</div>
+								<div class="info_item" style="margin-top: 20px">
+									<h6 class="card-subtitle mb-2 text-muted"
+										th:text="'ID: '+${c.idStudent}"></h6>
+									<h5 class="card-text a" th:text="'Name: '+${c.name}"></h5>
+									<h5 class="card-text a" th:text="'Age: '+${c.age}"></h5>
+									<h5 class="card-text a"
+										th:text="'Classroom: '+${c.classStudent}"></h5>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="~{/templates/footer::#footer}"></div>
+
+	</div>
+</body>
+</html>

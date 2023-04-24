@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>students</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+
+<script type="text/javascript">
+	function doDelete(id) {
+		if (confirm("are you sure to delete Student with ID=" + id)) {
+			window.location = "delete?idStudent=" + id;
+		}
+	}
+</script>
+
+<body>
+	<div th:replace="~{/templates/menu::menu}"></div>
+
+	<div class="container">
+		<div class="row">
+			<h1>List students</h1>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>idStudent</th>
+					<th>name</th>
+					<th>class</th>
+					<th>age</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="student: ${listStudent}">
+					<td th:text="${student.idStudent}"></td>
+					<td th:text="${student.name}"></td>
+					<td th:text="${student.classStudent}"></td>
+					<td th:text="${student.age}"></td>
+					<td><a
+						th:href="@{/updateStudent/{id}(id=${student.idStudent})}"
+						class="btn btn-success">Update</a> <a
+						th:onclick="|doDelete('${student.idStudent}')|"
+						class="btn btn-danger">Delete</a></td>
+
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/add}" class="btn btn-success col-lg-12">New student</a>
+	</div>
+</body>
+</html>
