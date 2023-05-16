@@ -3,6 +3,7 @@ package com.example.Controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ public class UserController {
 		return mav;
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("obj") UserLogin obj) throws IOException {
 		ModelAndView mav = new ModelAndView("login");

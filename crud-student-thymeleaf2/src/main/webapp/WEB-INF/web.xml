@@ -3,13 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextClass</param-name>
 		<param-value>
 			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		</param-value>
-	</context-param>
-
+	</context-param> -->
 	<display-name>crud-student-thymeleaf</display-name>
 
 	<servlet>
@@ -27,5 +26,24 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>  
+               /WEB-INF/spring-security.xml  
+               /WEB-INF/dispatcher-servlet.xml  
+        </param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 </web-app>

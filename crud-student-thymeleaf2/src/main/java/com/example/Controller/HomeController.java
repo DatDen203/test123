@@ -19,7 +19,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public ModelAndView home() {
-		return new ModelAndView("redirect:/list");
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping("/about")

@@ -3,6 +3,7 @@ package com.example.Dao;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,13 +15,16 @@ import com.example.util.MyBatisUtil;
 public class StudentDao implements IStudentDao {
 	@Autowired
 	JdbcTemplate _jdbcTemplate;
+	@Autowired 
+	SqlSessionFactory sqlSessionFactory;
 
 	public List<StudentDto> GetListStudent() {
 		List<StudentDto> listStudent = new ArrayList<StudentDto>();
 //		String sql = "select * from student";
 //		listStudent = _jdbcTemplate.query(sql, new StudentMapper());
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		listStudent = session.selectList("StudentDao.selectAll");;
+//		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		SqlSession session = sqlSessionFactory.openSession();
+		listStudent = session.selectList("StudentDao.selectAll");
 		session.commit();
 		session.close();
 		return listStudent;
@@ -81,5 +85,4 @@ public class StudentDao implements IStudentDao {
 		session.close();
 		return listStudent;
 	}
-
 }
