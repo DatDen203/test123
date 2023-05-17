@@ -7,7 +7,7 @@ import com.example.Model.StudentDto;
 public interface IStudentDao {
 	public List<StudentDto> GetListStudent();
 
-	public void insert(StudentDto obj);
+	public int insert(StudentDto obj);
 	
 	public StudentDto findById(int idStudent);
 	

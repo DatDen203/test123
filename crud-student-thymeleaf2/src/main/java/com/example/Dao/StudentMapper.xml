@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="StudentDao">
-   
-   <resultMap type="StudentDto" id="result">
-       <result property="idStudent" column="idStudent"/>
-       <result property="name" column="name"/>
-        <result property="classStudent" column="classStudent"/>
-        <result property="age" column="age"/>
-   </resultMap>
-   
-   <select id="selectByName" parameterType="string" resultType="StudentDto">
-        SELECT * FROM student
-        WHERE name = #{name}
-   </select>
-   
-   <select id="selectById" parameterType="int" resultType="StudentDto">
-        SELECT * FROM student
-        WHERE idStudent = #{idStudent}
-   </select>
-   
-   <delete id="deleteStudentById" parameterType="integer">
-        DELETE FROM student WHERE idStudent = #{idStudent}
-    </delete>
-   
-   <select id="selectAll" resultType="StudentDto">
-      SELECT * FROM student
-   </select>
-   
-   <insert id="insertStudent" parameterType="StudentDto">
-        INSERT INTO student (name, classStudent, age)
-        VALUES (#{name}, #{classStudent}, #{age})
-   </insert>
-   
-   <update id="update" parameterType="StudentDto">
-        UPDATE student
-        SET name = #{name}, classStudent = #{classStudent}, age = #{age}
-        WHERE idStudent = #{idStudent}
-   </update>
+<mapper namespace="StudentMapper">
+
+	<resultMap type="StudentDto" id="result">
+		<result property="idStudent" column="idStudent" />
+		<result property="name" column="name" />
+		<result property="classStudent" column="class" />
+		<result property="age" column="age" />
+	</resultMap>
+
+	<select id="findByName" parameterType="string"
+		resultType="StudentDto">
+		SELECT * FROM student
+		WHERE name = #{name}
+	</select>
+
+	<select id="findById" parameterType="int"
+		resultType="StudentDto">
+		SELECT * FROM student
+		WHERE idStudent = #{idStudent}
+	</select>
+
+	<delete id="deleteStudent" parameterType="integer">
+		DELETE FROM student WHERE idStudent = #{idStudent}
+	</delete>
+
+	<select id="selectAll" resultType="StudentDto" resultMap="result">
+		SELECT * FROM student
+	</select>
+
+	<insert id="insertStudent" parameterType="StudentDto" useGeneratedKeys="true" keyProperty="idStudent">
+		INSERT INTO student (name, class, age)
+		VALUES (#{name}, #{classStudent}, #{age})
+	</insert>
+
+	<update id="updateStudent" parameterType="StudentDto" >
+		UPDATE student
+		SET name = #{name}, age = #{age},class = #{classStudent}
+		WHERE idStudent = #{idStudent}
+	</update>
 </mapper>

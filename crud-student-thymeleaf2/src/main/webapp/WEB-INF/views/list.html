@@ -18,11 +18,12 @@
 
 <body>
 
-	<div th:replace="~{/templates/menu::menu}"> </div>
+	<div th:replace="~{/templates/menu::menu}"></div>
 
 	<div class="container-fluid"
 		style="margin: 0px; padding: 0px; max-width: 100%;">
-		<nav class="navbar navbar-light bg-light" style="width: 100%; padding: 7px 0px 7px 20px;">
+		<nav class="navbar navbar-light bg-light"
+			style="width: 100%; padding: 7px 0px 7px 20px;">
 			<div class="container-fluid">
 				<div style="display: flex;">
 					<a class="navbar-brand" th:href="@{/list}">List Of Student</a> <a
@@ -35,7 +36,6 @@
 						placeholder="search by name" style="width: 300px" />
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
-
 			</div>
 		</nav>
 
