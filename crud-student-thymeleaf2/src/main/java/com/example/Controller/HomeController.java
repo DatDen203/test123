@@ -34,7 +34,7 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/add", method = RequestMethod.GET)
 	public ModelAndView AddStudentView(ModelAndView mv) {
 		StudentDto obj = new StudentDto();
 		mv.addObject("obj", obj);
@@ -57,7 +57,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/list");
 	}
 
-	@RequestMapping(value = "/updateStudent/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/updateStudent/{id}", method = RequestMethod.GET)
 	public ModelAndView updateStudent(@PathVariable("id") int id) {
 		StudentDto obj = StudentService.findById(id);
 		ModelAndView mv = new ModelAndView("add");
@@ -66,7 +66,7 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/delete", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@RequestParam("idStudent") int id) {
 		StudentService.delete(id);
 		return new ModelAndView("redirect:/list");
