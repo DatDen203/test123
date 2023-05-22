@@ -107,9 +107,9 @@ public class UserController {
 
 		if(result == null) {
 			String check = userService.validateReigister(obj);
-			if (check.equals("Username and email not found")) {
+			if (check.equals("Username or email not found")) {
 				userService.register(obj);
-				
+				return new ModelAndView("redirect:/login");
 			} else if (check.equals("Username already exists")) {
 				result = validateResult.USERNAME_EXISTED;
 				mav.addObject("msgUsername", result.message);

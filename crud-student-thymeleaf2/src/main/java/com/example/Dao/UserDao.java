@@ -20,10 +20,10 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 
-	public void register(UserDto obj) {
+	public int register(UserDto obj) {
 //		String sql = "INSERT INTO user (name, username, email,pass) VALUES (?,?,?,?)";
 //		return _jdbcTemplate.update(sql, obj.getName(), obj.getUsername(), obj.getEmail(), obj.getPass());
-		
+		return getSqlSession().insert("UserMapper.insertUser", obj);
 		
 	}
 	
@@ -31,19 +31,7 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 //		String sql = "select * from user where username='" + obj.getUsername() + "' and pass='" + obj.getPass() + "'";
 //		List<UserDto> count = _jdbcTemplate.query(sql, new UserMapper());
 //		return count.size() > 0 ? count.get(0) : null;
-		
-/*		UserDto userDto = null;
-		
-		Map<String, String> paramMap = new HashMap<>();
-		paramMap.put("username", obj.getUsername());
-		paramMap.put("pass", obj.getPass());
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		userDto = session.selectOne("UserDao.selectUsernameAndPass", paramMap);
-		session.commit();
-		session.close();
-		*/
-		return null;
+		return getSqlSession().selectOne("UserMapper.checkIfUsernameOrEmailExists", obj);
 	}
 
 	public void update(UserDto obj) {
@@ -77,16 +65,7 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 //			return "Error email";
 //		}
 //		return "true";
-		
-		/*Map<String, String> paramMap = new HashMap<>();
-		paramMap.put("username", obj.getUsername());
-		paramMap.put("email", obj.getEmail());
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		String message = session.selectOne("UserDao.checkIfUsernameOrEmailExists", paramMap);
-		session.commit();
-		session.close();*/
-		return null;
+		return getSqlSession().selectOne("UserMapper.checkIfUsernameOrEmailExists", obj);
 	}
 	public static void main(String[] args) throws IOException {
 //		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();

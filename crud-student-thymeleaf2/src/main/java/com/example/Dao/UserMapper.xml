@@ -17,13 +17,13 @@
         WHEN EXISTS (SELECT * FROM user WHERE email = #{email})
           THEN 'Email already exists'
       ELSE
-          'Username and email not found'
+          'Username or email not found'
       END
    </select>
-
+	
    <insert id="insertUser" parameterType="UserDto">
-        INSERT INTO user (idUser, name, username, email, pass)
-        VALUES (#{idUser}, #{name}, #{username}, #{email}, #{pass})
+        INSERT INTO user ( name, username, email, pass)
+        VALUES (#{name}, #{username}, #{email}, #{pass})
    </insert>
    
    <update id="updateUser" parameterType="UserDto">

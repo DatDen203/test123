@@ -13,7 +13,7 @@
 	<select id="findByName" parameterType="string"
 		resultType="StudentDto">
 		SELECT * FROM student
-		WHERE name = #{name}
+		WHERE name = #{%name%}
 	</select>
 
 	<select id="findById" parameterType="int"
@@ -37,7 +37,7 @@
 
 	<update id="updateStudent" parameterType="StudentDto" >
 		UPDATE student
-		SET name = #{name}, age = #{age},class = #{classStudent}
+		SET name = #{name}, age = #{age}, class = #{classStudent}
 		WHERE idStudent = #{idStudent}
 	</update>
 </mapper>
