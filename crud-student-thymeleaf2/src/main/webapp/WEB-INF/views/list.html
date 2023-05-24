@@ -54,10 +54,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="c: ${listStudent}" data-bs-toggle="modal"
-						th:attr="data-bs-target='#detailsModal'+${c.idStudent}">
+					<tr th:each="c: ${listStudent}">
 						<td th:text="${c.idStudent}"></td>
-						<td th:text="${c.name}"></td>
+						<td th:text="${c.name}" data-bs-toggle="modal"
+							th:attr="data-bs-target='#detailsModal'+${c.idStudent}"></td>
 						<td th:text="${c.classStudent}"></td>
 						<td th:text="${c.age}"></td>
 						<td><a
@@ -97,6 +97,7 @@
 							</div>
 						</div>
 					</tr>
+
 				</tbody>
 			</table>
 		</div>

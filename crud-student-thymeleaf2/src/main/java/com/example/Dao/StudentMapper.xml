@@ -16,8 +16,8 @@
 		WHERE name = #{%name%}
 	</select>
 
-	<select id="findById" parameterType="int"
-		resultType="StudentDto">
+	<select id="findById" parameterType="integer"
+		resultType="StudentDto" resultMap="result">
 		SELECT * FROM student
 		WHERE idStudent = #{idStudent}
 	</select>
