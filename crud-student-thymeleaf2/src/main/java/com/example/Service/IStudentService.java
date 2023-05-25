@@ -18,10 +18,10 @@ public interface IStudentService {
 	public void update(StudentDto obj);
 	
 	@Autowired
-	public void delete(Integer id);
+	public void delete(String id);
 	
 	@Autowired
-	public StudentDto findById(int id);
+	public StudentDto findById(String id);
 	
 	@Autowired
 	public List<StudentDto> findByName(String name);

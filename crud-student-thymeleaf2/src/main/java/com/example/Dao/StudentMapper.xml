@@ -4,40 +4,45 @@
 <mapper namespace="StudentMapper">
 
 	<resultMap type="StudentDto" id="result">
-		<result property="idStudent" column="idStudent" />
-		<result property="name" column="name" />
-		<result property="classStudent" column="class" />
-		<result property="age" column="age" />
+		<result property="ID" column="ID" />
+		<result property="ID_USER" column="ID_USER" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="fullname" column="fullname" />
+		<result property="address" column="address" />
+		<result property="major" column="major" />
+		<result property="sex" column="sex" />
+		<result property="birthDay" column="birthDay" />
 	</resultMap>
 
 	<select id="findByName" parameterType="string"
 		resultType="StudentDto">
 		SELECT * FROM student
-		WHERE name = #{%name%}
+		WHERE fullname = #{%fullname%}
 	</select>
 
-	<select id="findById" parameterType="integer"
+	<select id="findById" parameterType="string"
 		resultType="StudentDto" resultMap="result">
 		SELECT * FROM student
-		WHERE idStudent = #{idStudent}
+		WHERE ID = #{ID}
 	</select>
 
-	<delete id="deleteStudent" parameterType="integer">
-		DELETE FROM student WHERE idStudent = #{idStudent}
+	<delete id="deleteStudent" parameterType="string">
+		DELETE FROM student WHERE ID = #{ID}
 	</delete>
 
 	<select id="selectAll" resultType="StudentDto" resultMap="result">
 		SELECT * FROM student
 	</select>
 
-	<insert id="insertStudent" parameterType="StudentDto" useGeneratedKeys="true" keyProperty="idStudent">
-		INSERT INTO student (name, class, age)
-		VALUES (#{name}, #{classStudent}, #{age})
+	<insert id="insertStudent" parameterType="StudentDto" useGeneratedKeys="true" keyProperty="ID">
+		INSERT INTO student (ID, ID_USER,email, phone, fullname, address, major, sex, birthDay)
+		VALUES (#{ID}, #{ID_USER}, #{email}, #{phone}, #{fullname}, #{address}, #{major}, #{sex}, #{birthDay})
 	</insert>
 
 	<update id="updateStudent" parameterType="StudentDto" >
 		UPDATE student
-		SET name = #{name}, age = #{age}, class = #{classStudent}
-		WHERE idStudent = #{idStudent}
+		SET ID_USER = #{ID_USER}, email = #{email}, fullname = #{fullname}, address = #{address}, major = #{major}, sex = #{sex}, birthDay = #{birthDay}
+		WHERE ID = #{ID}
 	</update>
 </mapper>

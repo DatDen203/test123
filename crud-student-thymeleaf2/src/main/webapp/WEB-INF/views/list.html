@@ -6,6 +6,13 @@
 
 <th:block th:insert="~{/templates/head::link}"></th:block>
 <th:block th:insert="~{/templates/head::script}"></th:block>
+<style type="text/css">
+	.btn {
+		width: 80px;
+    	height: 36px;
+    	margin-bottom: 10px;
+}
+</style>
 </head>
 
 <script type="text/javascript">
@@ -32,7 +39,7 @@
 						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
 				</div>
 				<form th:action="@{/search}" method="GET" class="d-flex">
-					<input class="form-control me-2" name="name"
+					<input class="form-control me-2" name="fullname"
 						placeholder="search by name" style="width: 300px" />
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
@@ -46,26 +53,36 @@
 			<table class="table table-striped table-bordered">
 				<thead class="table-dark">
 					<tr>
-						<th style="width: 20%">ID</th>
-						<th style="width: 20%">NAME</th>
-						<th style="width: 20%">CLASS</th>
-						<th style="width: 20%">AGE</th>
-						<th style="width: 20%">ACTION</th>
+						<th style="width: 10%">ID</th>
+						<th style="width: 10%">ID_USER</th>
+						<th style="width: 10%">EMAIL</th>
+						<th style="width: 10%">PHONE</th>
+						<th style="width: 10%">FULLNAME</th>
+						<th style="width: 10%">ADDRESS</th>
+						<th style="width: 10%">MAJOR</th>
+						<th style="width: 10%">SEX</th>
+						<th style="width: 10%">BIRTHDAY</th>
+						<th style="width: 10%">ACTION</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="c: ${listStudent}">
-						<td th:text="${c.idStudent}"></td>
-						<td th:text="${c.name}" data-bs-toggle="modal"
-							th:attr="data-bs-target='#detailsModal'+${c.idStudent}"></td>
-						<td th:text="${c.classStudent}"></td>
-						<td th:text="${c.age}"></td>
+						<td th:text="${c.ID}"></td>
+						<td th:text="${c.ID_USER}" data-bs-toggle="modal"
+							th:attr="data-bs-target='#detailsModal'+${c.ID}"></td>
+						<td th:text="${c.email}"></td>
+						<td th:text="${c.phone}"></td>
+						<td th:text="${c.fullname}"></td>
+						<td th:text="${c.address}"></td>
+						<td th:text="${c.major}"></td>
+						<td th:text="${c.sex}"></td>
+						<td th:text="${c.birthDay}"></td>
 						<td><a
-							th:href="@{/admin/updateStudent/{id}(id=${c.idStudent})}"
+							th:href="@{/admin/updateStudent/{id}(id=${c.ID})}"
 							class="btn btn-success">Update</a> <a
-							th:onclick="|doDelete('${c.idStudent}')|" class="btn btn-danger">Delete</a></td>
+							th:onclick="|doDelete('${c.ID}')|" class="btn btn-danger">Delete</a></td>
 						<!-- Modal Detail-->
-						<div class="modal fade" th:attr="id=${'detailsModal'+c.idStudent}" aria-hidden="true">
+						<div class="modal fade" th:attr="id=${'detailsModal'+c.ID}" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -82,11 +99,21 @@
 										</div>
 										<div class="info_item" style="margin-top: 20px">
 											<h6 class="card-subtitle mb-2 text-muted"
-												th:text="'ID: '+${c.idStudent}"></h6>
-											<h5 class="card-text a" th:text="'Name: '+${c.name}"></h5>
-											<h5 class="card-text a" th:text="'Age: '+${c.age}"></h5>
+												th:text="'ID: '+${c.ID}"></h6>
+											<h5 class="card-text a" th:text="'ID_USER: '+${c.ID_USER}"></h5>
+											<h5 class="card-text a" th:text="'EMAIL: '+${c.email}"></h5>
 											<h5 class="card-text a"
-												th:text="'Classroom: '+${c.classStudent}"></h5>
+												th:text="'PHONE: '+${c.phone}"></h5>
+												<h5 class="card-text a"
+												th:text="'NAME: '+${c.fullname}"></h5>
+												<h5 class="card-text a"
+												th:text="'ADDRESS: '+${c.address}"></h5>
+												<h5 class="card-text a"
+												th:text="'MAJOR: '+${c.major}"></h5>
+												<h5 class="card-text a"
+												th:text="'SEX: '+${c.sex}"></h5>
+												<h5 class="card-text a"
+												th:text="'BIRTHDAY: '+${c.birthDay}"></h5>
 										</div>
 									</div>
 									<div class="modal-footer">

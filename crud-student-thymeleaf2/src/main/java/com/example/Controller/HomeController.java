@@ -46,7 +46,7 @@ public class HomeController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) {
 		try {
-			if (obj.getIdStudent()==null) {
+			if (obj.getID().equals("")) {
 				StudentService.insert(obj);
 			} else {
 				StudentService.update(obj);
@@ -58,7 +58,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin/updateStudent/{id}", method = RequestMethod.GET)
-	public ModelAndView updateStudent(@PathVariable("id") int id) {
+	public ModelAndView updateStudent(@PathVariable("id") String id) {
 		StudentDto obj = StudentService.findById(id);
 		ModelAndView mv = new ModelAndView("add");
 		mv.addObject("obj", obj);
@@ -67,13 +67,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin/delete", method = RequestMethod.GET)
-	public ModelAndView deleteStudent(@RequestParam("idStudent") int id) {
+	public ModelAndView deleteStudent(@RequestParam("idStudent") String id) {
 		StudentService.delete(id);
 		return new ModelAndView("redirect:/list");
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView searchByName(@RequestParam("name") String name) {
+	public ModelAndView searchByName(@RequestParam("fullname") String name) {
 		ModelAndView mav = new ModelAndView("list");
 		mav.addObject("listStudent", StudentService.findByName(name));
 		return mav;

@@ -29,11 +29,11 @@ public class StudentDao extends SqlSessionDaoSupport implements IStudentDao {
 
 	}
 
-	public void delete(Integer idStudent) {
-		getSqlSession().delete("deleteStudent", idStudent);
+	public void delete(String ID) {
+		getSqlSession().delete("deleteStudent", ID);
 	}
-	public StudentDto findById(int idStudent) {
-		return getSqlSession().selectOne("findById", idStudent);
+	public StudentDto findById(String ID) {
+		return getSqlSession().selectOne("findById", ID);
 	}
 
 	public void update(StudentDto obj) {

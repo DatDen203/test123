@@ -9,12 +9,12 @@ public interface IStudentDao {
 
 	public int insert(StudentDto obj);
 	
-	public StudentDto findById(int idStudent);
+	public StudentDto findById(String ID);
 	
 	public List<StudentDto> findByName(String name);
 
 	public void update(StudentDto obj);
 	
-	public void delete(Integer idStudent);
+	public void delete(String ID);
 
 }
