@@ -36,8 +36,10 @@ public class security extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/list")
+			.antMatchers("/admin/**")
 			.access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/*")
+			.permitAll()
 		    .anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -56,4 +58,6 @@ public class security extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			;
 	}
+	
+	//chưa mã hóa pass
 }

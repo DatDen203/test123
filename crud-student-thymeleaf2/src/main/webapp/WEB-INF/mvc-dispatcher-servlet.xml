@@ -23,7 +23,11 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver"></property>
+<<<<<<< Upstream, based on origin/master
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/csdl_ql_sv"></property>
+=======
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/test3"></property>
+>>>>>>> cba2d01 chưa mã hóa pass
 		<property name="username" value="root"></property>
 		<property name="password" value="tuantuoi2412"></property>
 	</bean>

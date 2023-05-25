@@ -38,7 +38,11 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>  
+<<<<<<< Upstream, based on origin/master
                 /WEB-INF/spring-security.xml   
+=======
+                <!-- /WEB-INF/spring-security.xml    -->
+>>>>>>> cba2d01 chưa mã hóa pass
                /WEB-INF/mvc-dispatcher-servlet.xml  
         </param-value>
 	</context-param>
