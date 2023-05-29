@@ -1,10 +1,14 @@
 package com.example.Controller;
 
+import java.util.Collection;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,10 +40,18 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/list")
-	public ModelAndView student() {
-		ModelAndView mv = new ModelAndView("list");
-		mv.addObject("listStudent", StudentService.GetListStudent());
-		return mv;
+	public ModelAndView student(Authentication authentication) {
+	        if (authentication != null) {
+	        	Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+	            if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+	            	ModelAndView mv = new ModelAndView("list");
+	        		mv.addObject("listStudent", StudentService.GetListStudent());
+	        		return mv;
+	            } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+	                return new ModelAndView("about");
+	            }
+	        }
+	        return new ModelAndView("login");
 	}
 
 	@RequestMapping(value = "admin/add", method = RequestMethod.GET)
