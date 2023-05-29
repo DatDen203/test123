@@ -21,9 +21,15 @@ public class security extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select username,password, enabled from users where username=?")
-				.authoritiesByUsernameQuery(
-						"Select username, concat('ROLE_',user_role) user_role from user_roles where username=?").passwordEncoder(passwordEncoder());
+				.usersByUsernameQuery("SELECT ID, pass, true FROM user WHERE ID=?")
+				.authoritiesByUsernameQuery("SELECT u.ID, concat(\"ROLE_\", r.user_role)\r\n"
+						+ "FROM user_role ur \r\n"
+						+ "INNER JOIN user u \r\n"
+						+ "ON u.id = ur.ID_USER \r\n"
+						+ "INNER JOIN role r \r\n"
+						+ "ON r.ID = ur.ID_ROLE \r\n"
+						+ "WHERE u.ID= ?;")
+				.passwordEncoder(passwordEncoder());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -36,8 +42,10 @@ public class security extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/list")
+			.antMatchers("/admin/**")
 			.access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/*")
+			.permitAll()
 		    .anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -45,7 +53,7 @@ public class security extends WebSecurityConfigurerAdapter {
 			.loginPage("/login").permitAll()
 			.passwordParameter("pass")
 			.usernameParameter("username")
-			.defaultSuccessUrl("/list")
+			.defaultSuccessUrl("/admin/allClass")
 			.failureUrl("/login?error")
 			.and()
 			.logout()
@@ -56,4 +64,6 @@ public class security extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			;
 	}
+	
+	//chưa mã hóa pass
 }

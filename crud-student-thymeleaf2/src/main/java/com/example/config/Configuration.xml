@@ -5,6 +5,7 @@
     <typeAliases> 
         <typeAlias alias="StudentDto" type="com.example.Model.StudentDto"/> 
         <typeAlias alias="UserDto" type="com.example.Model.UserDto"/> 
+        <typeAlias alias="ClassRoomDto" type="com.example.Model.ClassRoomDto"/> 
     </typeAliases> 
 
     <environments default="development">
@@ -12,14 +13,11 @@
         <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://127.0.0.1:3306/test" />
+            <property name="url" value="jdbc:mysql://127.0.0.1:3306/test3" />
             <property name="username" value="root"/>
-            <property name="password" value="999999"/>
+            <property name="password" value="021199"/>
             </dataSource>
         </environment>
     </environments>
-			
-    <!-- <mappers>
-        <mapper resource="com/example/Dao/StudentMapper.xml"/>	
-    </mappers> -->
+    
 </configuration>
