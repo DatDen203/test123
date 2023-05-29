@@ -16,4 +16,12 @@ public class ClassRoomService implements IClassRoomService{
 	public List<ClassRoomDto> GetListClass(){
 		return dao.GetListClass();
 	}
+
+	public void delete(String id) {
+		dao.delete(id);
+	}
+
+	public ClassRoomDto findById(String id) {
+		return dao.findById(id);
+	}
 }

@@ -12,4 +12,13 @@
 		SELECT * FROM classroom
 	</select>
 
+    <delete id="deleteClass" parameterType="string">
+		DELETE FROM classroom WHERE ID = #{id}
+	</delete>
+	
+	<select id="findById" parameterType="string"
+		resultType="ClassRoomDto" resultMap="result">
+		SELECT * FROM classroom
+		WHERE ID = #{ID}
+	</select>
 </mapper>

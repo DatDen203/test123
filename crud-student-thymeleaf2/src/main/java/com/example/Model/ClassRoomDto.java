@@ -31,4 +31,7 @@ public class ClassRoomDto {
 		this.id = id;
 		this.name = name;
 	}
+	public ClassRoomDto() {
+		// TODO Auto-generated constructor stub
+	}
 }

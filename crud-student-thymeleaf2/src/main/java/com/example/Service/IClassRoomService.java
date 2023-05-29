@@ -11,4 +11,10 @@ import com.example.Model.ClassRoomDto;
 public interface IClassRoomService {
 	@Autowired
 	public List<ClassRoomDto> GetListClass();
+	
+	@Autowired
+	public void delete(String id);
+	
+	@Autowired
+	public ClassRoomDto findById(String id);
 }

@@ -53,19 +53,23 @@ public class HomeController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) throws ParseException {
-		StudentDto objResult = StudentService.findById(obj.getID());
-		UserDto objUser = new UserDto();
-		objUser.setId(obj.getID());
+//		StudentDto objResult = StudentService.findById(obj.getID_USER());
 		
-		obj.setID_USER(obj.getID());
-		Date ngaySinh = obj.getBirthDay();
-		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
-
-		String strNgaySinh = formatter.format(ngaySinh);
-		strNgaySinh = strNgaySinh.replace("-", "");
-		objUser.setPass(strNgaySinh);
+		
+//		obj.setID_USER(obj.getID());
+		
 		try {
-			if (objResult == null) {
+			if (obj.getID() == "") {
+				UserDto objUser = new UserDto();
+				objUser.setId(obj.getID_USER());
+				
+				Date ngaySinh = obj.getBirthDay();
+				SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
+
+				String strNgaySinh = formatter.format(ngaySinh);
+				strNgaySinh = strNgaySinh.replace("-", "");
+				objUser.setPass(strNgaySinh);
+				obj.setID(obj.getID_USER());
 				UserService.register(objUser);
 				StudentService.insert(obj);
 			} else {

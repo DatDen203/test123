@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function doDelete(id) {
 		if (confirm("are you sure to delete Class with ID=" + id)) {
-			window.location = "admin/delete?idClass=" + id;
+			window.location = "admin/deleteClass?idClass=" + id;
 		}
 	}
 </script>
@@ -34,11 +34,11 @@
 			<div class="container-fluid">
 				<div style="display: flex;">
 					<a class="navbar-brand" th:href="@{/list}">List Of Class</a> <a
-						th:href="@{/admin/allClass}"> <img alt="img add"
+						th:href="@{/admin/addClass}"> <img alt="img add"
 						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
 						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
 				</div>
-				<form th:action="@{/searchClass}" method="GET" class="d-flex">
+				<form th:action="@{/admin/searchClass}" method="GET" class="d-flex">
 					<input class="form-control me-2" name="fullname"
 						placeholder="search by name" style="width: 300px" />
 					<button class="btn btn-outline-success" type="submit">Search</button>
@@ -67,10 +67,13 @@
 							th:attr="data-bs-target='#detailsModal'+${c.id}"></td>
 						<!-- <td th:text="${)}"></td> -->
 						<!-- <td th:text="${c.teacher}"></td> -->
-						<td><a
-							th:href="@{/admin/updateClass/{id}(id=${c.id})}"
-							class="btn btn-success">Update</a> <a
-							th:onclick="|doDelete('${c.id}')|" class="btn btn-danger">Delete</a></td>
+						<td>
+						<a  th:href="@{/admin/updateClass/{id}(id=${c.id})}"
+							class="btn btn-success">Update </a> 
+						<a th:onclick="|doDelete('${c.id}')|" class="btn btn-danger">Delete</a>
+						<a th:href="@{/admin/detailClass/{id}(id=${c.id})}"
+							class="btn btn-success">View</a> 
+						</td>
 						<!-- Modal Detail-->
 						<div class="modal fade" th:attr="id=${'detailsModal'+c.id}" aria-hidden="true">
 							<div class="modal-dialog">

@@ -30,10 +30,10 @@ public class StudentDao extends SqlSessionDaoSupport implements IStudentDao {
 	}
 
 	public void delete(String ID) {
-		getSqlSession().delete("deleteStudent", ID);
+		getSqlSession().delete("StudentMapper.deleteStudent", ID);
 	}
 	public StudentDto findById(String ID) {
-		return getSqlSession().selectOne("findById", ID);
+		return getSqlSession().selectOne("StudentMapper.findById", ID);
 	}
 
 	public void update(StudentDto obj) {
