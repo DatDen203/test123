@@ -26,6 +26,7 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 		return getSqlSession().insert("UserMapper.insertUser", obj);
 		
 	}
+
 	
 	public UserDto validateLogin(UserLogin obj) {
 //		String sql = "select * from user where username='" + obj.getUsername() + "' and pass='" + obj.getPass() + "'";

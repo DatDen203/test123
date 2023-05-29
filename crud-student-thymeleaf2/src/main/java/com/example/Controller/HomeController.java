@@ -1,5 +1,9 @@
 package com.example.Controller;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.Model.StudentDto;
+import com.example.Model.UserDto;
 import com.example.Service.StudentServiceImpl;
+import com.example.Service.UserService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	StudentServiceImpl StudentService;
+	@Autowired
+	UserService UserService;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -44,9 +52,21 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) {
+	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) throws ParseException {
+		StudentDto objResult = StudentService.findById(obj.getID());
+		UserDto objUser = new UserDto();
+		objUser.setId(obj.getID());
+		
+		obj.setID_USER(obj.getID());
+		Date ngaySinh = obj.getBirthDay();
+		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
+
+		String strNgaySinh = formatter.format(ngaySinh);
+		strNgaySinh = strNgaySinh.replace("-", "");
+		objUser.setPass(strNgaySinh);
 		try {
-			if (obj.getID().equals("")) {
+			if (objResult == null) {
+				UserService.register(objUser);
 				StudentService.insert(obj);
 			} else {
 				StudentService.update(obj);
