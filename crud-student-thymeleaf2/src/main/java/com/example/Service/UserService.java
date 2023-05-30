@@ -34,4 +34,8 @@ public class UserService implements IUserService{
 		return dao.findUserByEmail(email);
 	}
 
+	public void delete(String id) {
+		dao.delete(id);
+	}
+
 }

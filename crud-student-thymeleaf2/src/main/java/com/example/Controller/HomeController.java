@@ -1,9 +1,9 @@
 package com.example.Controller;
 
-import java.util.Collection;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.Model.StudentDto;
 import com.example.Model.UserDto;
+import com.example.Model.UserRoleDto;
 import com.example.Service.StudentServiceImpl;
+import com.example.Service.UserRoleService;
 import com.example.Service.UserService;
 
 @Controller
@@ -28,6 +30,8 @@ public class HomeController {
 	StudentServiceImpl StudentService;
 	@Autowired
 	UserService UserService;
+	@Autowired
+	UserRoleService UserRoleService;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -65,24 +69,34 @@ public class HomeController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView insertStudent(@ModelAttribute StudentDto obj) throws ParseException {
-//		StudentDto objResult = StudentService.findById(obj.getID_USER());
-		
-		
-//		obj.setID_USER(obj.getID());
 		
 		try {
-			if (obj.getID() == "") {
+			if (obj.getID() == null) {
+				
 				UserDto objUser = new UserDto();
+				//username của user
 				objUser.setId(obj.getID_USER());
 				
 				Date ngaySinh = obj.getBirthDay();
 				SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
-
 				String strNgaySinh = formatter.format(ngaySinh);
 				strNgaySinh = strNgaySinh.replace("-", "");
+				
+				//password của user
 				objUser.setPass(strNgaySinh);
+				
+				//đang fix, phải tự động tăng trong db
 				obj.setID(obj.getID_USER());
+				
+				//uer_role
+				UserRoleDto objUserRole = new UserRoleDto();
+				//set id_role = user = 2, admin = 1
+				objUserRole.setId_role(2);
+				//set id_user là id của user
+				objUserRole.setId_user(objUser.getId());
+				
 				UserService.register(objUser);
+				UserRoleService.insert(objUserRole);
 				StudentService.insert(obj);
 			} else {
 				StudentService.update(obj);
@@ -104,7 +118,12 @@ public class HomeController {
 
 	@RequestMapping(value = "admin/delete", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@RequestParam("idStudent") String id) {
+		
+		String idUser = StudentService.findById(id).getID_USER();
+		String idUserRole = UserRoleService.findByIdUser(idUser).getId();
+		UserRoleService.delete(idUserRole);
 		StudentService.delete(id);
+		UserService.delete(idUser);
 		return new ModelAndView("redirect:/list");
 	}
 

@@ -11,4 +11,5 @@ public interface IUserDao {
 	public void update(UserDto obj);
 	public String validateReigister(UserDto obj);
 	public UserDto findUserByEmail(String email);
+	public void delete(String id);
 }
