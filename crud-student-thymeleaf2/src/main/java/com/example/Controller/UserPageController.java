@@ -29,7 +29,7 @@ public class UserPageController {
 	ClassRoomService classRoomService;
 	
 	@RequestMapping("/userPage")
-	public ModelAndView userPage() {
+	public ModelAndView userPageLogin() {
 		String id = authenticationService.authenticateAndGetUsername();
 		ModelAndView mv = new ModelAndView("userPage");
 		mv.addObject("id", id);
@@ -40,6 +40,19 @@ public class UserPageController {
 		mv.addObject("name", username);
 		return mv;
 	}
+	
+	@RequestMapping("/userPage/{id}")
+	public ModelAndView userPage(@PathVariable("id") String id) {
+		ModelAndView mv = new ModelAndView("userPage");
+		mv.addObject("id", id);
+		/*
+		 * UserDto obj = userService.findUserById(id); mv.addObject("obj", obj);
+		 */
+		String username = userService.findUserById(id).getId();
+		mv.addObject("name", username);
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "/profileOfStudent/{id}", method = RequestMethod.GET)
 	public ModelAndView userPageProfile(@PathVariable("id") String id) {

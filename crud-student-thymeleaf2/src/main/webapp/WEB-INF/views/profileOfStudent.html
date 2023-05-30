@@ -21,7 +21,7 @@
 <body>
 	<div th:replace="~{/templates/menu::menu}"></div>
 
-	<form th:action="@{/}" method="POST" th:object="${obj}">
+	<form th:object="${obj}">
 		<section class="vh-100" style="background-color: #fbfbfb;">
 			<div class="container h-100">
 				<div class="row d-flex justify-content-center align-items-center"
@@ -40,7 +40,7 @@
 									</div>
 									<div class="col-md-9 pe-5">
 									
-										<input th:field="*{ID_USER}" class="form-control form-control-lg" />
+										<input th:field="*{ID_USER}" class="form-control form-control-lg" disabled/>
 
 									</div>
 								</div>
@@ -50,7 +50,7 @@
 										<h6 class="mb-0">Email</h6>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input th:field="*{email}" class="form-control form-control-lg" />
+										<input th:field="*{email}" class="form-control form-control-lg" disabled/>
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-md-9 pe-5">
 											<input th:field="*{phone}"
-												class="form-control form-control-lg" />
+												class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -71,7 +71,7 @@
 											<h6 class="mb-0">FullName</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{fullname}" class="form-control form-control-lg" />
+											<input th:field="*{fullname}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
@@ -82,7 +82,7 @@
 											<h6 class="mb-0">Address</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{address}" class="form-control form-control-lg" />
+											<input th:field="*{address}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -91,7 +91,7 @@
 											<h6 class="mb-0">Major</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{major}" class="form-control form-control-lg" />
+											<input th:field="*{major}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 											<h6 class="mb-0">Sex</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{sex}" class="form-control form-control-lg" />
+											<input th:field="*{sex}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -111,18 +111,20 @@
 											<h6 class="mb-0">Birthday</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{birthDay}" class="form-control form-control-lg" />
+											<input th:field="*{birthDay}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
 								
-								<!-- <hr class="mx-n3">
+								<hr class="mx-n3">
 								<div class="text-center">
-									<button type="submit" class="btn btn-success"
-										style="width: 200px; height: 40px; margin: 20px;">SAVE</button>
-									<button type="submit" class="btn btn-success"
-										style="width: 200px; height: 40px; margin: 20px;">SAVE</button>
-								</div> -->
+								    <a
+							         th:href="@{/userPage/{id}(id=*{ID_USER})}"
+							         class="btn btn-success">Back</a>
+									<!-- <button type="submit" class="btn btn-success"
+										style="width: 200px; height: 40px; margin: 20px;">BACK</button> -->
+									
+								</div>
 							</div>
 						</div>
 					</div>
