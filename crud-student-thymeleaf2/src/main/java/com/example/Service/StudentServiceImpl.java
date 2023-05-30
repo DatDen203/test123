@@ -37,4 +37,8 @@ public class StudentServiceImpl implements IStudentService{
 		return dao.findByName(name);
 	}
 
+	public StudentDto findByIdUser(String id) {
+		return dao.findByIdUser(id);
+	}
+
 }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>List of Class</title>
+<title>All Class</title>
 
 <th:block th:insert="~{/templates/head::link}"></th:block>
 <th:block th:insert="~{/templates/head::script}"></th:block>
@@ -41,7 +41,7 @@
 				<form th:action="@{/admin/searchClass}" method="GET" class="d-flex">
 					<input class="form-control me-2" name="fullname"
 						placeholder="search by name" style="width: 300px" />
-					<button class="btn btn-outline-success" type="submit" style="margin: 0">Search</button>
+					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 			</div>
 		</nav>

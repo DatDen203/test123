@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Your Classes</title>
+<th:block th:insert="~{/templates/head::link}"></th:block>
+<th:block th:insert="~{/templates/head::script}"></th:block>
+<style type="text/css">
+.btn {
+	width: 80px;
+	height: 36px;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+	<div th:replace="~{/templates/menu::menu}"></div>
+	<div class="container-fluid"
+		style="margin: 0px; padding: 0px; max-width: 100%;">
+		<nav class="navbar navbar-light bg-light"
+			style="width: 100%; padding: 7px 0px 7px 20px;">
+			<div class="container-fluid">
+				<div style="display: flex;">
+					<a class="navbar-brand" th:href="@{/list}">List Of Class</a> <a>
+						<img alt="img add"
+						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
+						style="width: 35px; height: 35px; margin-bottom: 5px">
+					</a>
+				</div>
+				<form th:action="@{/search}" method="GET" class="d-flex">
+					<input class="form-control me-2" name="fullname"
+						placeholder="search by name" style="width: 300px" />
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
+		</nav>
+
+		<div class="badge bg-primary text-wrap"
+			style="width: 6rem; margin: 10px 0px 10px 25px"
+			th:text="'Count: '+${listClass.size()}">Count:</div>
+		<div class="contentx">
+			<table class="table table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th style="width: 10%">ID</th>
+						<th style="width: 10%">Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c: ${listClass}">
+						<td th:text="${c.id}"></td>
+						<!-- <td th:text="${c.ID_USER}" data-bs-toggle="modal"
+							th:attr="data-bs-target='#detailsModal'+${c.ID}"></td> -->
+						<td th:text="${c.name}"></td>
+						<!-- <td><a th:href="@{/admin/updateStudent/{id}(id=${c.ID})}"
+							class="btn btn-success">Update</a> <a
+							th:onclick="|doDelete('${c.ID}')|" class="btn btn-danger">Delete</a></td> -->
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

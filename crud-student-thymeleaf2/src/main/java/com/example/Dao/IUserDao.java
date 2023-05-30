@@ -12,4 +12,5 @@ public interface IUserDao {
 	public String validateReigister(UserDto obj);
 	public UserDto findUserByEmail(String email);
 	public void delete(String id);
+	public UserDto findUserById(String id);
 }

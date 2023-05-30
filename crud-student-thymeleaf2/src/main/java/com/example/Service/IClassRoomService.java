@@ -17,4 +17,7 @@ public interface IClassRoomService {
 	
 	@Autowired
 	public ClassRoomDto findById(String id);
+	
+	@Autowired
+	public List<ClassRoomDto> findClassOfOneStudent(String id);
 }

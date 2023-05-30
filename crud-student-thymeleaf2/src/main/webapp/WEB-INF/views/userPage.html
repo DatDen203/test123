@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User page</title>
+
+<th:block th:insert="~{/templates/head::link}"></th:block>
+<th:block th:insert="~{/templates/head::script}"></th:block>
+
+<style type="text/css">
+.btn {
+	width: 80px;
+	height: 36px;
+	margin-bottom: 10px;
+}
+
+.card{
+    height: 300px;
+}
+
+.container{
+    margin: 8%;
+    
+}
+
+.inner{
+    overflow: hidden;
+}
+
+.inner img{
+    transition: all 1.5s ease;
+    width: 100px;
+}
+
+.inner:hover img{
+    transform: scale(1.5);
+}
+</style>
+
+</head>
+<body>
+
+	<div th:replace="~{/templates/menuUser::menu}"></div>
+
+<!-- <h1>Xin chào [[${name}]]!</h1> -->
+ <div class="container md-6">
+    
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow text-center" style="width: 18rem;">
+          <div class="inner">
+            <img src="https://cdn-icons-png.flaticon.com/128/1654/1654193.png" class="card-img-top " alt="...">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h5 class="card-title">My classes</h5>
+            <p class="card-text">View your enrolled classes..</p>
+            <div class="mt-auto">
+                <a th:href="@{/classOfStudent/{id}(id=${name})}" class="btn btn-success">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow text-center" style="width: 18rem;">
+          <div class="inner">
+            <img src="https://cdn-icons-png.flaticon.com/128/201/201634.png" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body text-center d-flex flex-column">	
+            <h5 class="card-title">My profile</h5>
+            <p class="card-text">View your information.</p>
+            <div class="mt-auto">
+                <a th:href="@{/profileOfStudent/{id}(id=${name})}" class="btn btn-success">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow text-center" style="width: 18rem;">
+          <div class="inner">
+            <img src="https://cdn-icons-png.flaticon.com/128/9913/9913544.png" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h5 class="card-title">My Grades</h5>
+            <p class="card-text">View your grades and progress in each class.</p>
+            <div class="mt-auto">
+                <a href="#" class="btn btn-success">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+	<div th:replace="~{/templates/footer::#footer}"></div>
+
+</body>
+</html>

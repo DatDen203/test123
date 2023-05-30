@@ -7,6 +7,7 @@
         <typeAlias alias="UserDto" type="com.example.Model.UserDto"/> 
         <typeAlias alias="ClassRoomDto" type="com.example.Model.ClassRoomDto"/> 
         <typeAlias alias="UserRoleDto" type="com.example.Model.UserRoleDto"/> 
+        <typeAlias alias="LearnDto" type="com.example.Model.LearnDto"/> 
     </typeAliases> 
 
     <!-- <environments default="development">

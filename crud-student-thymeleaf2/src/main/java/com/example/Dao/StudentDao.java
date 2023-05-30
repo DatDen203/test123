@@ -44,4 +44,8 @@ public class StudentDao extends SqlSessionDaoSupport implements IStudentDao {
 		return getSqlSession().selectList("findByName", name);
 	}
 
+	public StudentDto findByIdUser(String ID) {
+		return getSqlSession().selectOne("StudentMapper.findByIdUser", ID);
+	}
+
 }
