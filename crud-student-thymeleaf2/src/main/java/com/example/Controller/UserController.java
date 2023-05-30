@@ -84,26 +84,17 @@ public class UserController {
 		String message = "";
 		validateResult result = null;
 
-		if (obj.getName().equals("")) {
-			result = validateResult.FULLNAME_NOT_FOUND;
-			mav.addObject("msgFullname", result.message);
-		}
-		if (obj.getUsername().equals("")) {
-			result = validateResult.USERNAME_NOT_FOUND;
-			mav.addObject("msgUsername", result.message);
-		}
-		if (obj.getPass().equals("")) {
-			result = validateResult.PASSWORD_NOT_FOUND;
-			mav.addObject("msgPassword", result.message);
-		}
-		if (obj.getEmail().equals("")) {
-			result = validateResult.EMAIL_NOT_FOUND;
-			mav.addObject("msgEmail", result.message);
-		} 
-		else if (!obj.getEmail().endsWith("@gmail.com")) {
-			result = validateResult.EMAIL_INVALID;
-			mav.addObject("msgEmail", result.message);
-		}
+		/*
+		 * if (obj.getName().equals("")) { result = validateResult.FULLNAME_NOT_FOUND;
+		 * mav.addObject("msgFullname", result.message); } if
+		 * (obj.getUsername().equals("")) { result = validateResult.USERNAME_NOT_FOUND;
+		 * mav.addObject("msgUsername", result.message); } if (obj.getPass().equals(""))
+		 * { result = validateResult.PASSWORD_NOT_FOUND; mav.addObject("msgPassword",
+		 * result.message); } if (obj.getEmail().equals("")) { result =
+		 * validateResult.EMAIL_NOT_FOUND; mav.addObject("msgEmail", result.message); }
+		 * else if (!obj.getEmail().endsWith("@gmail.com")) { result =
+		 * validateResult.EMAIL_INVALID; mav.addObject("msgEmail", result.message); }
+		 */
 
 		if(result == null) {
 			String check = userService.validateReigister(obj);

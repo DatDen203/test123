@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Class</title>
+<th:block th:insert="~{/templates/head::link}"> </th:block>
+<th:block th:insert="~{/templates/head::script}"> </th:block>
+</head>
+<body>
+	<div th:replace="~{/templates/menu::menu}"></div>
+
+	<form th:action="@{/admin/save}" method="POST" th:object="${obj}">
+		<section class="vh-100" style="background-color: #fbfbfb;">
+			<div class="container h-100">
+				<div class="row d-flex justify-content-center align-items-center"
+					style="padding-top: 50px;">
+					<div class="col-xl-7">
+						<h3 class="mb-4" style="color: #150ECC" th:text="${title}"></h3>
+						<div class="card" style="border-radius: 15px;">
+							<div class="card-body">
+								<input type="hidden" th:field="*{id}"
+									class="form-control form-control-lg"/>
+								<hr class="mx-n3">
+								<div class="row align-items-center pt-4 pb-3">
+									<div class="col-md-3 ps-5">
+										<h6 class="mb-0">ID</h6>
+									</div>
+									<div class="col-md-9 pe-5">
+										<input th:field="*{id}" class="form-control form-control-lg" />
+									</div>
+								</div>
+								<hr class="mx-n3">
+								<div class="row align-items-center py-3">
+									<div class="col-md-3 ps-5">
+										<h6 class="mb-0">Name</h6>
+									</div>
+									<div class="col-md-9 pe-5">
+										<input th:field="*{name}" class="form-control form-control-lg" />
+									</div>
+								</div>
+								
+								<hr class="mx-n3">
+								<div class="text-center">
+									<button type="submit" class="btn btn-success"
+										style="width: 200px; height: 40px; margin: 20px;">SAVE</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</form>
+	<div th:replace="~{/templates/footer::#footer}"></div>
+</body>
+
+</html>

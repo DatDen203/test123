@@ -22,9 +22,13 @@
    </select>
 	
    <insert id="insertUser" parameterType="UserDto">
-        INSERT INTO user ( name, username, email, pass)
-        VALUES (#{name}, #{username}, #{email}, #{pass})
+        INSERT INTO user (ID, pass)
+        VALUES (#{id}, #{pass})
    </insert>
+   
+   <delete id="delete" parameterType="string">
+		DELETE FROM user WHERE ID = #{ID}
+	</delete>
    
    <update id="updateUser" parameterType="UserDto">
        UPDATE user
@@ -39,10 +43,7 @@
    </select>
    
    <resultMap type="UserDto" id="result">
-       <result property="name" column="name"/>
-       <result property="username" column="username"/>
+       <result property="id" column="ID"/>
         <result property="pass" column="pass"/>
-        <result property="email" column="email"/>
-        <result property="idUser" column="idUser"/>
    </resultMap>
 </mapper>

@@ -25,4 +25,7 @@ public interface IUserService {
 
 	@Autowired
 	public UserDto findUserByEmail(String email);
+	
+	@Autowired
+	public void delete(String id);
 }
