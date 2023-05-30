@@ -103,6 +103,10 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 		
 	}
 
+	public UserDto findUserById(String id) {
+		return getSqlSession().selectOne("UserMapper.findUserById", id);
+	}
+
 
 	
 }

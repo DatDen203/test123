@@ -37,5 +37,9 @@ public class UserService implements IUserService{
 	public void delete(String id) {
 		dao.delete(id);
 	}
+	
+	public UserDto findUserById(String id) {
+		return dao.findUserById(id);
+	}
 
 }

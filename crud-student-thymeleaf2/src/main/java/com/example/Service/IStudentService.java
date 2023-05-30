@@ -24,5 +24,8 @@ public interface IStudentService {
 	public StudentDto findById(String id);
 	
 	@Autowired
+	public StudentDto findByIdUser(String id);
+	
+	@Autowired
 	public List<StudentDto> findByName(String name);
 }
