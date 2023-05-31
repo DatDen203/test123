@@ -6,6 +6,8 @@
         <typeAlias alias="StudentDto" type="com.example.Model.StudentDto"/> 
         <typeAlias alias="UserDto" type="com.example.Model.UserDto"/> 
         <typeAlias alias="ClassRoomDto" type="com.example.Model.ClassRoomDto"/> 
+        <typeAlias alias="TeacherDto" type="com.example.Model.TeacherDto" />
+        <typeAlias alias="TeachingDto" type="com.example.Model.TeachingDto" />
         <typeAlias alias="UserRoleDto" type="com.example.Model.UserRoleDto"/> 
         <typeAlias alias="LearnDto" type="com.example.Model.LearnDto"/> 
     </typeAliases> 
@@ -14,10 +16,10 @@
         <environment id="development">
         <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-            <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://127.0.0.1:3306/test3" />
+            <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://127.0.0.1:3306/csdl_ql_sv" />
             <property name="username" value="root"/>
-            <property name="password" value="021199"/>
+            <property name="password" value="tuantuoi2412"/>
             </dataSource>
         </environment>
     </environments> -->
