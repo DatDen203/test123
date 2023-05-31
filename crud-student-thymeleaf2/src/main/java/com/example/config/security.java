@@ -47,7 +47,8 @@ public class security extends WebSecurityConfigurerAdapter {
 			//.antMatchers("/list")
 			.access("hasRole('ROLE_ADMIN')")
 			//Quyền User
-			.antMatchers("/about")
+			.antMatchers("/user/**")
+//			.antMatchers("/userPage/*","/profileOfStudent/*", "/classOfStudent/*")
 			.access("hasRole('ROLE_USER')")
 			.antMatchers("/*")
 			.permitAll()
@@ -58,7 +59,7 @@ public class security extends WebSecurityConfigurerAdapter {
 			.loginPage("/login").permitAll()
 			.passwordParameter("pass")
 			.usernameParameter("username")
-			.defaultSuccessUrl("/userPage")
+			.defaultSuccessUrl("/home")
 			.failureUrl("/login?error")
 			.and()
 			.logout()

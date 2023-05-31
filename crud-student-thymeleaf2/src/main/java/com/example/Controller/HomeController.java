@@ -23,6 +23,7 @@ import com.example.Model.UserRoleDto;
 import com.example.Service.StudentServiceImpl;
 import com.example.Service.UserRoleService;
 import com.example.Service.UserService;
+import com.example.Service.AuthenticationServiceImpl;
 
 @Controller
 public class HomeController {
@@ -32,6 +33,8 @@ public class HomeController {
 	UserService UserService;
 	@Autowired
 	UserRoleService UserRoleService;
+	@Autowired
+	AuthenticationServiceImpl authenticationService;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -43,7 +46,7 @@ public class HomeController {
 		return new ModelAndView("about");
 	}
 
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = "/home")
 	public ModelAndView student(Authentication authentication) {
 	        if (authentication != null) {
 	        	Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -52,7 +55,15 @@ public class HomeController {
 	        		mv.addObject("listStudent", StudentService.GetListStudent());
 	        		return mv;
 	            } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-	                return new ModelAndView("about");
+	            	String id = authenticationService.authenticateAndGetUsername();
+	        		ModelAndView mv = new ModelAndView("userPage");
+	        		mv.addObject("id", id);
+	        		/*
+	        		 * UserDto obj = userService.findUserById(id); mv.addObject("obj", obj);
+	        		 */
+	        		String username = UserService.findUserById(id).getId();
+	        		mv.addObject("name", username);
+	        		return mv;
 	            }
 	        }
 	        return new ModelAndView("login");

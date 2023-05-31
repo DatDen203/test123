@@ -28,7 +28,7 @@ public class UserPageController {
 	@Autowired
 	ClassRoomService classRoomService;
 	
-	@RequestMapping("/userPage")
+	@RequestMapping("/user/userPage")
 	public ModelAndView userPageLogin() {
 		String id = authenticationService.authenticateAndGetUsername();
 		ModelAndView mv = new ModelAndView("userPage");
@@ -41,7 +41,7 @@ public class UserPageController {
 		return mv;
 	}
 	
-	@RequestMapping("/userPage/{id}")
+	@RequestMapping("/user/userPage/{id}")
 	public ModelAndView userPage(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("userPage");
 		mv.addObject("id", id);
@@ -54,7 +54,7 @@ public class UserPageController {
 	}
 	
 	
-	@RequestMapping(value = "/profileOfStudent/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/profileOfStudent/{id}", method = RequestMethod.GET)
 	public ModelAndView userPageProfile(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("profileOfStudent");
 		StudentDto obj = studentService.findByIdUser(id);
@@ -63,7 +63,7 @@ public class UserPageController {
 	}
 	
 	
-	@RequestMapping(value = "/classOfStudent/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/classOfStudent/{id}", method = RequestMethod.GET)
 	public ModelAndView userPageClassRoom(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("classOfStudent");
 		List<ClassRoomDto> obj = classRoomService.findClassOfOneStudent(id);
