@@ -13,6 +13,12 @@ public interface IClassRoomService {
 	public List<ClassRoomDto> GetListClass();
 	
 	@Autowired
+	public int insert(ClassRoomDto obj);
+	
+	@Autowired
+	public void update(ClassRoomDto obj);
+	
+	@Autowired
 	public void delete(String id);
 	
 	@Autowired

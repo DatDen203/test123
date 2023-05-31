@@ -106,14 +106,14 @@ body {
 						<!-- Username input -->
 						<div class=" mb-4">
 							<label class="form-label" for="loginName">Username</label> 
-							<input type="text" name="username" class="form-control" id="username" th:filed="*{id}"/>
+							<input type="text" name="username" class="form-control" id="username" th:filed="*{id}" required/>
 							<span class="text-danger" th:text="${msgUsername}"></span>
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
 							<label class="form-label" for="loginPassword">Password</label> 
-							<input type="password" name="pass" class="form-control" id="password" th:filed="*{pass}"/>
+							<input type="password" name="pass" class="form-control" id="password" th:filed="*{pass}" required/>
 							<span class="text-danger" th:text="${msgPassword}"></span>
 						</div>
 

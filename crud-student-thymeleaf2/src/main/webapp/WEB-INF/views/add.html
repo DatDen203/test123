@@ -41,7 +41,7 @@
 									</div>
 									<div class="col-md-9 pe-5">
 									
-										<input th:field="*{ID_USER}" class="form-control form-control-lg" />
+										<input th:field="*{ID_USER}" class="form-control form-control-lg" required/>
 
 									</div>
 								</div>
@@ -51,7 +51,7 @@
 										<h6 class="mb-0">Email</h6>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input th:field="*{email}" class="form-control form-control-lg" />
+										<input th:field="*{email}" class="form-control form-control-lg"  required/>
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -63,7 +63,7 @@
 										</div>
 										<div class="col-md-9 pe-5">
 											<input th:field="*{phone}"
-												class="form-control form-control-lg" />
+												class="form-control form-control-lg" type="number" required />
 										</div>
 									</div>
 									
@@ -72,7 +72,7 @@
 											<h6 class="mb-0">FullName</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{fullname}" class="form-control form-control-lg" />
+											<input th:field="*{fullname}" class="form-control form-control-lg" required/>
 										</div>
 									</div>
 								</div>
@@ -83,7 +83,7 @@
 											<h6 class="mb-0">Address</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{address}" class="form-control form-control-lg" />
+											<input th:field="*{address}" class="form-control form-control-lg" required/>
 										</div>
 									</div>
 									
@@ -92,7 +92,7 @@
 											<h6 class="mb-0">Major</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{major}" class="form-control form-control-lg" />
+											<input th:field="*{major}" class="form-control form-control-lg" required/>
 										</div>
 									</div>
 								</div>
@@ -103,7 +103,7 @@
 											<h6 class="mb-0">Sex</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{sex}" class="form-control form-control-lg" />
+											<input th:field="*{sex}" class="form-control form-control-lg" required/>
 										</div>
 									</div>
 									
@@ -112,7 +112,7 @@
 											<h6 class="mb-0">Birthday</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{birthDay}" class="form-control form-control-lg" />
+											<input th:field="*{birthDay}" class="form-control form-control-lg" required />
 										</div>
 									</div>
 								</div>

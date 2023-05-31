@@ -127,7 +127,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/list");
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchClassRoom", method = RequestMethod.GET)
 	public ModelAndView searchByName(@RequestParam("fullname") String name) {
 		ModelAndView mav = new ModelAndView("list");
 		mav.addObject("listStudent", StudentService.findByName(name));
