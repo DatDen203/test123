@@ -26,17 +26,21 @@
         VALUES (#{id}, #{pass})
    </insert>
    
+   <delete id="delete" parameterType="string">
+		DELETE FROM user WHERE ID = #{ID}
+	</delete>
+   
    <update id="updateUser" parameterType="UserDto">
        UPDATE user
        SET pass= #{pass}, email = #{email}, name = #{name}, username = #{username}
        WHERE idUser = #{idUser}
     </update>
    
-   
-   <select id="getUserByUsername" parameterType="string" resultType="UserDto">
+   <select id="findUserById" parameterType="string" resultType="UserDto">
        SELECT * FROM user
-       WHERE username = #{username}
+       WHERE id = #{id}
    </select>
+   
    
    <resultMap type="UserDto" id="result">
        <result property="id" column="ID"/>

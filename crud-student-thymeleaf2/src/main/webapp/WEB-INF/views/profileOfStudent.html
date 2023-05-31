@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Student</title>
+<title>Your Profile</title>
 <th:block th:insert="~{/templates/head::link}"> </th:block>
 <th:block th:insert="~{/templates/head::script}"> </th:block>
 <style>
@@ -21,7 +21,7 @@
 <body>
 	<div th:replace="~{/templates/menu::menu}"></div>
 
-	<form th:action="@{/save}" method="POST" th:object="${obj}">
+	<form th:object="${obj}">
 		<section class="vh-100" style="background-color: #fbfbfb;">
 			<div class="container h-100">
 				<div class="row d-flex justify-content-center align-items-center"
@@ -30,10 +30,9 @@
 						<h3 class="mb-4" style="color: #150ECC" th:text="${title}"></h3>
 						<div class="card" style="border-radius: 15px;">
 							<div class="card-body">
-								<!-- <input type="hidden" th:field="*{ID}"
+								<input type="hidden" th:field="*{ID}"
 									class="form-control form-control-lg"/>
-								<hr class="mx-n3"> -->
-								
+								<hr class="mx-n3">
 								<div class = 'input__row'>
 									<div class="row align-items-center pt-4 pb-3">
 									<div class="col-md-3 ps-5">
@@ -41,7 +40,7 @@
 									</div>
 									<div class="col-md-9 pe-5">
 									
-										<input th:field="*{ID_USER}" class="form-control form-control-lg" />
+										<input th:field="*{ID_USER}" class="form-control form-control-lg" disabled/>
 
 									</div>
 								</div>
@@ -51,7 +50,7 @@
 										<h6 class="mb-0">Email</h6>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input th:field="*{email}" class="form-control form-control-lg" />
+										<input th:field="*{email}" class="form-control form-control-lg" disabled/>
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -63,7 +62,7 @@
 										</div>
 										<div class="col-md-9 pe-5">
 											<input th:field="*{phone}"
-												class="form-control form-control-lg" />
+												class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -72,7 +71,7 @@
 											<h6 class="mb-0">FullName</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{fullname}" class="form-control form-control-lg" />
+											<input th:field="*{fullname}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
@@ -83,7 +82,7 @@
 											<h6 class="mb-0">Address</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{address}" class="form-control form-control-lg" />
+											<input th:field="*{address}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -92,7 +91,7 @@
 											<h6 class="mb-0">Major</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{major}" class="form-control form-control-lg" />
+											<input th:field="*{major}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
@@ -103,7 +102,7 @@
 											<h6 class="mb-0">Sex</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{sex}" class="form-control form-control-lg" />
+											<input th:field="*{sex}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 									
@@ -112,15 +111,19 @@
 											<h6 class="mb-0">Birthday</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{birthDay}" class="form-control form-control-lg" />
+											<input th:field="*{birthDay}" class="form-control form-control-lg" disabled/>
 										</div>
 									</div>
 								</div>
 								
 								<hr class="mx-n3">
 								<div class="text-center">
-									<button type="submit" class="btn btn-success"
-										style="width: 200px; height: 40px; margin: 20px;">SAVE</button>
+								    <a
+							         th:href="@{/userPage/{id}(id=*{ID_USER})}"
+							         class="btn btn-success">Back</a>
+									<!-- <button type="submit" class="btn btn-success"
+										style="width: 200px; height: 40px; margin: 20px;">BACK</button> -->
+									
 								</div>
 							</div>
 						</div>

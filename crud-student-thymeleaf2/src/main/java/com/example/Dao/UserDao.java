@@ -97,6 +97,16 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 		return null;
 	}
 
+	@Override
+	public void delete(String id) {
+		getSqlSession().delete("UserMapper.delete", id);
+		
+	}
+
+	public UserDto findUserById(String id) {
+		return getSqlSession().selectOne("UserMapper.findUserById", id);
+	}
+
 
 	
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserRoleMapper">
+
+	<resultMap type="UserRoleDto" id="result">
+		<result property="id" column="ID" />
+		<result property="id_user" column="ID_USER" />
+		<result property="id_role" column="ID_ROLE" />
+	</resultMap>
+
+	<insert id="insert" parameterType="UserRoleDto">
+		INSERT INTO user_role (ID_USER, ID_ROLE)
+		VALUES (#{id_user}, #{id_role})
+	</insert> 
+	
+	<select id="findByIdUser" parameterType="string"
+		resultType="UserRoleDto" resultMap="result">
+		SELECT * FROM user_role
+		WHERE ID_USER = #{id}
+	</select>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM user_role WHERE ID = #{ID}
+	</delete>
+</mapper>
