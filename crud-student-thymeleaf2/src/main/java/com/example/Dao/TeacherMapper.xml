@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeacherMapper">
+
+	<resultMap type="TeacherDto" id="result">
+		<result property="ID_Teacher" column="ID" />
+		<result property="name" column="name" />
+		<result property="major" column="major" />
+	</resultMap>
+
+	<select id="findByName" parameterType="string"
+		resultType="TeacherDto">
+		SELECT * FROM teacher
+		WHERE name = #{%name%}
+	</select>
+
+	<select id="findById" parameterType="string"
+		resultType="TeacherDto" resultMap="result">
+		SELECT * FROM teacher
+		WHERE ID_Teacher = #{ID}
+	</select>
+
+	<delete id="deleteTeacher" parameterType="string">
+		DELETE FROM teacher WHERE ID_Teacher = #{ID}
+	</delete>
+
+	<select id="selectAll" resultType="TeacherDto" resultMap="result">
+		SELECT * FROM teacher
+	</select>
+
+	<insert id="insertTeacher" parameterType="TeacherDto" useGeneratedKeys="true" keyProperty="ID">
+		INSERT INTO student (ID_Teacher, name, major)
+		VALUES (#{ID}, #{name}, #{major})
+	</insert>
+
+	<update id="updateTeacher" parameterType="TeacherDto" >
+		UPDATE teacher
+		SET name = #{name}, major = #{major}
+		WHERE ID_Teacher = #{ID}
+	</update>
+</mapper>
