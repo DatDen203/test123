@@ -17,11 +17,13 @@
 	}
 	
 </style>
+
+
 </head>
 <body>
 	<div th:replace="~{/templates/menu::menu}"></div>
 
-	<form th:action="@{/save}" method="POST" th:object="${obj}">
+	<form th:action="@{/save}" method="POST" th:object="${obj}" id='form'>
 		<section class="vh-100" style="background-color: #fbfbfb;">
 			<div class="container h-100">
 				<div class="row d-flex justify-content-center align-items-center"
@@ -30,9 +32,6 @@
 						<h3 class="mb-4" style="color: #150ECC" th:text="${title}"></h3>
 						<div class="card" style="border-radius: 15px;">
 							<div class="card-body">
-								<!-- <input type="hidden" th:field="*{ID}"
-									class="form-control form-control-lg"/>
-								<hr class="mx-n3"> -->
 								
 								<div class = 'input__row'>
 									<div class="row align-items-center pt-4 pb-3">
@@ -41,7 +40,7 @@
 									</div>
 									<div class="col-md-9 pe-5">
 									
-										<input th:field="*{ID_USER}" class="form-control form-control-lg" required/>
+										<input th:field="*{ID_USER}" class="form-control form-control-lg" id='id_user' required/>
 
 									</div>
 								</div>
@@ -51,7 +50,8 @@
 										<h6 class="mb-0">Email</h6>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input th:field="*{email}" class="form-control form-control-lg"  required/>
+										<input th:field="*{email}" class="form-control form-control-lg" id='email' required/>
+										<span></span>
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -63,7 +63,8 @@
 										</div>
 										<div class="col-md-9 pe-5">
 											<input th:field="*{phone}"
-												class="form-control form-control-lg" type="number" required />
+												class="form-control form-control-lg" type="number" id='phone' required />
+												<span></span>
 										</div>
 									</div>
 									
@@ -72,7 +73,7 @@
 											<h6 class="mb-0">FullName</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{fullname}" class="form-control form-control-lg" required/>
+											<input th:field="*{fullname}" class="form-control form-control-lg" id='fullname' required/>
 										</div>
 									</div>
 								</div>
@@ -83,7 +84,7 @@
 											<h6 class="mb-0">Address</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{address}" class="form-control form-control-lg" required/>
+											<input th:field="*{address}" class="form-control form-control-lg" id='address' required/>
 										</div>
 									</div>
 									
@@ -92,7 +93,7 @@
 											<h6 class="mb-0">Major</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{major}" class="form-control form-control-lg" required/>
+											<input th:field="*{major}" class="form-control form-control-lg" id='major' required/>
 										</div>
 									</div>
 								</div>
@@ -103,7 +104,7 @@
 											<h6 class="mb-0">Sex</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{sex}" class="form-control form-control-lg" required/>
+											<input th:field="*{sex}" class="form-control form-control-lg" id='sex' required/>
 										</div>
 									</div>
 									
@@ -112,7 +113,7 @@
 											<h6 class="mb-0">Birthday</h6>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input th:field="*{birthDay}" class="form-control form-control-lg" required />
+											<input th:field="*{birthDay}" class="form-control form-control-lg" id='birthday' required />
 										</div>
 									</div>
 								</div>
@@ -132,4 +133,61 @@
 	<div th:replace="~{/templates/footer::#footer}"></div>
 </body>
 
+<!-- <script defer src="/resources/js/addStudent.js"></script> -->
+<script>
+
+const form = document.querySelector('#form');
+const emailInput = document.getElementById('email');
+var errorMessageSpan = document.querySelector("#email + span");
+const phoneInput = document.getElementById('phone');
+var errorMessageSpan2 = document.querySelector("#phone + span");
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^[0-9]{10}$/;
+
+
+const validateEmail = (email) => {
+	return emailRegex.test(String(email).toLowerCase());
+}
+
+const validatePhone = (phone) => {
+	return phoneRegex.test(String(phone).toLowerCase());
+}
+
+const validateForm = (event) => {
+	event.preventDefault(); // Ngăn chặn form submit
+
+	let isFormValid = true;
+
+	if (!validateEmail(emailInput.value)) {
+		console.log("invalid");
+		errorMessageSpan.classList.add("text-danger");
+		errorMessageSpan.textContent = "Email is invalid";
+		isFormValid = false;
+	} 
+
+	if (!validatePhone(phoneInput.value)) {
+		console.log("invalid");
+		errorMessageSpan2.classList.add("text-danger");
+		errorMessageSpan2.textContent = "Phone is invalid";
+		isFormValid = false;
+	} 
+	// Nếu form không hợp lệ thì ngăn chặn submit và hiển thị thông báo
+	/* if (!isFormValid) {
+		const errorMsg = document.getElementById('error-msg');
+		errorMsg.classList.add('d-block');
+	} else {
+		// Nếu form hợp lệ thì submit
+		form.submit();
+	} */
+	
+	if(isFormValid){
+		form.submit();
+	}
+};
+
+const saveBtn = document.querySelector('button[type="submit"]');
+saveBtn.addEventListener('click', validateForm);
+    
+</script>
 </html>

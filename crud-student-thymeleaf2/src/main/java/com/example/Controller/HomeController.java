@@ -46,6 +46,13 @@ public class HomeController {
 		return new ModelAndView("about");
 	}
 
+	@RequestMapping(value ="/list", method=RequestMethod.GET)
+	public ModelAndView getAllStudent() {
+		ModelAndView mv = new ModelAndView("list");
+		mv.addObject("listStudent", StudentService.GetListStudent());
+		return mv;
+	}
+	
 	@RequestMapping(value = "/home")
 	public ModelAndView student(Authentication authentication) {
 	        if (authentication != null) {
