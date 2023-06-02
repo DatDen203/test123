@@ -79,7 +79,7 @@ body {
 				<div class="tab-pane fade show active" id="pills-login"
 					role="tabpanel" aria-labelledby="tab-login">
 
-					<form th:action="@{doLogin}" method="POST" th:object="${obj}">
+					<form th:action="@{doLogin}" method="POST" th:object="${obj}" id='form'>
 
 						<div class="text-center mb-3">
 							<p>Sign in with:</p>
@@ -105,14 +105,14 @@ body {
 					    <span class="text-danger" th:text="${msg}"></span>
 						<!-- Username input -->
 						<div class=" mb-4">
-							<label class="form-label" for="loginName">Username</label> 
+							<label class="form-label" for="username">Username</label> 
 							<input type="text" name="username" class="form-control" id="username" th:filed="*{id}"/>
 							<span class="text-danger" th:text="${msgUsername}"></span>
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
-							<label class="form-label" for="loginPassword">Password</label> 
+							<label class="form-label" for="password">Password</label> 
 							<input type="password" name="pass" class="form-control" id="password" th:filed="*{pass}"/>
 							<span class="text-danger" th:text="${msgPassword}"></span>
 						</div>
@@ -152,6 +152,51 @@ body {
 		</div>
 	</div>
 </body>
+
+<script>
+    const form = document.querySelector('#form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    
+    var errorMessageSpan = document.querySelector("#username + span");
+    var errorMessageSpan2 = document.querySelector("#password + span");
+
+    const validateForm = (event) => {
+    	event.preventDefault(); // Ngăn chặn form submit
+    	console.log(1);
+
+    	let isFormValid = true;
+
+    	if (usernameInput.value === "") {
+    		console.log("invalid");
+    		/* errorMessageSpan.classList.add("text-danger"); */
+    		errorMessageSpan.textContent = "Username is required";
+    		isFormValid = false;
+    	} 
+
+    	if (passwordInput.value === "") {
+    		console.log("invalid");
+    		/* errorMessageSpan2.classList.add("text-danger"); */
+    		errorMessageSpan2.textContent = "Password is required";
+    		isFormValid = false;
+    	} 
+    	// Nếu form không hợp lệ thì ngăn chặn submit và hiển thị thông báo
+    	/* if (!isFormValid) {
+    		const errorMsg = document.getElementById('error-msg');
+    		errorMsg.classList.add('d-block');
+    	} else {
+    		// Nếu form hợp lệ thì submit
+    		form.submit();
+    	} */
+    	
+    	if(isFormValid){
+    		form.submit();
+    	}
+    };
+
+    const saveBtn = document.querySelector('button[type="submit"]');
+    saveBtn.addEventListener('click', validateForm);
+</script>
 
 </html>
 

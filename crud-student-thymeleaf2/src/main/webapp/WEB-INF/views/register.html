@@ -94,28 +94,28 @@ body {
 						<!-- Name input -->
 						<div class=" mb-4">
 							<label class="form-label is-invalid" for="registerName">Full Name</label> 
-							<input type="text" name="name" class="form-control" th:field="*{name}"/>
+							<input type="text" name="name" class="form-control" th:field="*{name}" required/>
 							<span class="text-danger" th:text="${msgFullname}"></span>
 						</div>
 
 						<!-- Username input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerUsername">Username</label>
-							<input type="text" name="username" class="form-control" th:field="*{username}" />
+							<input type="text" name="username" class="form-control" th:field="*{username}" required/>
 							<span class="text-danger" th:text="${msgUsername}"></span>
 						</div>
 
 						<!-- Password input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerPassword">Password</label>
-							<input type="password" name="pass" class="form-control" th:field="*{pass}"/>
+							<input type="password" name="pass" class="form-control" th:field="*{pass}" required/>
 							<span class="text-danger" th:text="${msgPassword}"></span>
 						</div>
 
 						<!-- Email input -->
 						<div class=" mb-4">
 							<label class="form-label" for="registerEmail">Email</label> 
-							<input type="text" name="email" class="form-control" th:filed="*{email}"/>
+							<input type="text" name="email" class="form-control" th:filed="*{email}" required/>
 							<span class="text-danger" th:text="${msgEmail}"></span>
 						</div>
 

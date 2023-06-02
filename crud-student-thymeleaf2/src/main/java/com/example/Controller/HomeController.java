@@ -46,6 +46,13 @@ public class HomeController {
 		return new ModelAndView("about");
 	}
 
+	@RequestMapping(value ="/list", method=RequestMethod.GET)
+	public ModelAndView getAllStudent() {
+		ModelAndView mv = new ModelAndView("list");
+		mv.addObject("listStudent", StudentService.GetListStudent());
+		return mv;
+	}
+	
 	@RequestMapping(value = "/home")
 	public ModelAndView student(Authentication authentication) {
 	        if (authentication != null) {
@@ -138,7 +145,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/home");
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchClassRoom", method = RequestMethod.GET)
 	public ModelAndView searchByName(@RequestParam("fullname") String name) {
 		ModelAndView mav = new ModelAndView("list");
 		mav.addObject("listStudent", StudentService.findByName(name));

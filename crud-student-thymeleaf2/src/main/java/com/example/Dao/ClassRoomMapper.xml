@@ -12,6 +12,16 @@
 		SELECT * FROM classroom
 	</select>
 
+	<insert id="insertClassRoom" parameterType="ClassRoomDto"> 
+		insert into classroom (ID, name) values (#{id},#{name})
+	</insert>
+
+	<update id="updateClassRoom" parameterType="ClassRoomDto">
+		update classroom
+		set name = #{name}
+		where ID= #{id}
+	</update>
+
     <delete id="deleteClass" parameterType="string">
 		DELETE FROM classroom WHERE ID = #{id}
 	</delete>
@@ -19,6 +29,6 @@
 	<select id="findById" parameterType="string"
 		resultType="ClassRoomDto" resultMap="result">
 		SELECT * FROM classroom
-		WHERE ID = #{ID}
+		WHERE ID = #{id}
 	</select>
 </mapper>

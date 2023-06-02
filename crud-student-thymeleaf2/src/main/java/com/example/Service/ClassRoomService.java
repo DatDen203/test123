@@ -39,4 +39,16 @@ public class ClassRoomService implements IClassRoomService{
 		}
 		return classOfStudent;
 	}
+
+	@Override
+	public int insert(ClassRoomDto obj) {
+		// TODO Auto-generated method stub
+		return dao.insert(obj);
+	}
+
+	@Override
+	public void update(ClassRoomDto obj) {
+		// TODO Auto-generated method stub
+		dao.update(obj);
+	}
 }

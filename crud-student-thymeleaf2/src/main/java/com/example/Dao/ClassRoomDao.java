@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.example.Model.ClassRoomDto;
-import com.example.Model.StudentDto;
 
 @Repository
 public class ClassRoomDao extends SqlSessionDaoSupport implements IClassRoomDao{
@@ -31,6 +30,17 @@ public class ClassRoomDao extends SqlSessionDaoSupport implements IClassRoomDao{
 	
 	public ClassRoomDto findById(String ID) {
 		return getSqlSession().selectOne("ClassRoomMapper.findById", ID);
+	}
+
+	@Override
+	public int insert(ClassRoomDto obj) {
+		return getSqlSession().insert("ClassRoomMapper.insertClassRoom", obj);
+	}
+
+	@Override
+	public void update(ClassRoomDto obj) {
+		getSqlSession().insert("ClassRoomMapper.updateClassRoom", obj);
+		
 	}
 
 }
