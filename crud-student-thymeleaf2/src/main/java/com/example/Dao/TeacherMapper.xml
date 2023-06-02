@@ -18,11 +18,14 @@
 	<select id="findById" parameterType="string"
 		resultType="TeacherDto" resultMap="result">
 		SELECT * FROM teacher
-		WHERE ID_Teacher = #{ID}
+		WHERE ID = #{ID_Teacher}
+	</select>
+	<select id="selectID" resultType="string" resultMap="result">
+		SELECT ID FROM teacher 
 	</select>
 
 	<delete id="deleteTeacher" parameterType="string">
-		DELETE FROM teacher WHERE ID_Teacher = #{ID}
+		DELETE FROM teacher WHERE ID = #{ID_Teacher}
 	</delete>
 
 	<select id="selectAll" resultType="TeacherDto" resultMap="result">
@@ -30,13 +33,13 @@
 	</select>
 
 	<insert id="insertTeacher" parameterType="TeacherDto" useGeneratedKeys="true" keyProperty="ID">
-		INSERT INTO student (ID_Teacher, name, major)
-		VALUES (#{ID}, #{name}, #{major})
+		INSERT INTO teacher (ID, name, major)
+		VALUES (#{ID_Teacher}, #{name}, #{major})
 	</insert>
 
 	<update id="updateTeacher" parameterType="TeacherDto" >
 		UPDATE teacher
 		SET name = #{name}, major = #{major}
-		WHERE ID_Teacher = #{ID}
+		WHERE ID = #{ID_Teacher}
 	</update>
 </mapper>

@@ -115,7 +115,7 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ModelAndView("redirect:/list");
+		return new ModelAndView("redirect:/home");
 	}
 
 	@RequestMapping(value = "admin/updateStudent/{id}", method = RequestMethod.GET)
@@ -135,7 +135,7 @@ public class HomeController {
 		UserRoleService.delete(idUserRole);
 		StudentService.delete(id);
 		UserService.delete(idUser);
-		return new ModelAndView("redirect:/list");
+		return new ModelAndView("redirect:/home");
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

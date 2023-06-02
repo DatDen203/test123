@@ -34,7 +34,7 @@
 			<div class="container-fluid">
 				<div style="display: flex;">
 					<a class="navbar-brand" th:href="@{/list_teacher}">List Of
-						Teachers</a> <a th:href="@{/admin/add_teacher}"> <img alt="img add"
+						Teachers</a> <a th:href="@{/admin/addTeacher}"> <img alt="img add"
 						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
 						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
 				</div>
@@ -47,7 +47,8 @@
 		</nav>
 
 		<div class="badge bg-primary text-wrap"
-			style="width: 6rem; margin: 10px 0px 10px 25px">Count:</div>
+			style="width: 6rem; margin: 10px 0px 10px 25px"
+			th:text="'Count: ' + ${listTeacher.size()}">Count:</div>
 		<div class="contentx">
 			<table class="table table-striped table-bordered">
 				<thead class="table-dark">
@@ -59,13 +60,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td th:text="ID"></td>
-						<td data-bs-toggle="modal" th:text="Fullname"></td>
-						<td th:text="Major"></td>
+					<tr th:each="c: ${listTeacher}">
+						<td th:text="${c.iD_Teacher}"></td>
+						<td data-bs-toggle="modal" th:text="${c.name}"></td>
+						<td th:text="${c.major}"></td>
 						<td>
-							<a th:href="@{/admin/update_teacher}" class="btn btn-success">Update</a> 
-							<a th:href="@{/admin/class_teaching}" class="btn btn-success">Class</a> 
+							<a th:href="@{/admin/updateTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Update</a> 
+							<a th:href="@{/admin/detailTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Class</a> 
 							<a class="btn btn-danger">Delete</a>
 
 						</td>

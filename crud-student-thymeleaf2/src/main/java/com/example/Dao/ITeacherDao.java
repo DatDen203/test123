@@ -15,4 +15,6 @@ public interface ITeacherDao {
 	public void update(TeacherDto obj);
 	
 	public void delete(String ID);
+	
+	public List<String> getAllID();
 }

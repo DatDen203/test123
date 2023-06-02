@@ -31,5 +31,11 @@ public class TeacherDto {
 	public void setMajor(String major) {
 		this.major = major;
 	}
+	@Override
+	public String toString() {
+		return ID_Teacher;
+	}
+	
+	
 	
 }

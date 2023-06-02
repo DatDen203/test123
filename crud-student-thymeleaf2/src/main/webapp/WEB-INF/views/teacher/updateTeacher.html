@@ -9,7 +9,7 @@
 <body>
 	<div th:replace="~{/templates/menu::menu}"></div>
 
-	<form th:action="@{/admin/saveAddTeacher}" method="POST" th:object="${obj}">
+	<form th:action="@{/admin/saveUpdateTeacher}" method="POST" th:object="${obj}">
 		<section class="vh-100" style="background-color: #fbfbfb;">
 			<div class="container h-100">
 				<div class="row d-flex justify-content-center align-items-center"
@@ -23,7 +23,7 @@
 										<h6 class="mb-0">ID</h6>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input th:field="*{ID_Teacher}" class="form-control form-control-lg" />
+										<input th:field="*{ID_Teacher}" class="form-control form-control-lg" readonly/>
 										<span th:text="${msg}"></span>
 									</div>
 								</div>

@@ -25,4 +25,7 @@ public interface ITeacherService {
 	
 	@Autowired
 	public List<TeacherDto> findByName(String name);
+	
+	@Autowired
+	public List<String> getAllID();
 }

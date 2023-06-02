@@ -45,6 +45,11 @@ public class TeacherDao extends SqlSessionDaoSupport implements ITeacherDao {
 	public void delete(String ID) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("TeacherMapper.deleteTeacher", ID);
+
+	}
+	
+	public List<String> getAllID() {
+		return getSqlSession().selectList("TeacherMapper.selectID");
 	}
 
 }

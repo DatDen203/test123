@@ -51,5 +51,9 @@ public class TeacherService implements ITeacherService {
 		// TODO Auto-generated method stub
 		return dao.findByName(name);
 	}
+	@Override
+	public List<String> getAllID() {
+		return dao.getAllID();
+	}
 
 }
