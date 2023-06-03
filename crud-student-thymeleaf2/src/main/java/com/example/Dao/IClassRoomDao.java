@@ -14,4 +14,6 @@ public interface IClassRoomDao {
 	public void delete(String id);
 	
 	public ClassRoomDto findById(String id);
+	
+	public List<ClassRoomDto> getAllClass(String id);
 }

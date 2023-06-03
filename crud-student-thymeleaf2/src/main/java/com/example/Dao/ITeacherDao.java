@@ -1,6 +1,8 @@
 package com.example.Dao;
 
 import java.util.List;
+
+import com.example.Model.ClassRoomDto;
 import com.example.Model.TeacherDto;
 
 public interface ITeacherDao {
@@ -17,4 +19,6 @@ public interface ITeacherDao {
 	public void delete(String ID);
 	
 	public List<String> getAllID();
+	
+//	public List<ClassRoomDto> getAllClass(String idTeacher);
 }

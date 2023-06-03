@@ -42,5 +42,8 @@ public class ClassRoomDao extends SqlSessionDaoSupport implements IClassRoomDao{
 		getSqlSession().insert("ClassRoomMapper.updateClassRoom", obj);
 		
 	}
-
+	@Override
+	public List<ClassRoomDto> getAllClass(String id) {
+		return getSqlSession().selectList("ClassRoomMapper.getAllClass", id);
+	}
 }

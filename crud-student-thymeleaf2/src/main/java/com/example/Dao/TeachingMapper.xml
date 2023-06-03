@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeachingMapper">
+
+	<resultMap type="TeachingDto" id="result1">
+		<result property="ID" column="ID" />
+		<result property="ID_Teacher" column="ID_TEACHER" />
+		<result property="ID_Classroom" column="ID_CLASSROOM" />
+		<result property="teachingTime" column="teachingTime" />
+		<result property="teachingDate" column="teachingDate" />
+	</resultMap>
+
+	<resultMap type="ClassRoomDto" id="result2">
+		<result property="id" column="ID" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<select id="getAllClass" parameterType="string"
+		resultType="ClassRoomDto" resultMap="result2">
+		select classroom.ID,
+		classroom.name from classroom
+		join teaching on teaching.ID_CLASSROOM = classroom.ID
+		where teaching.ID_TEACHER = #{ID_Teacher};
+	</select>
+
+</mapper>

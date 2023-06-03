@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.Model.ClassRoomDto;
 import com.example.Model.TeacherDto;
 import com.example.Service.TeacherService;
+import com.example.Service.TeachingService;
 
 @Controller
 public class TeacherController {
 	@Autowired
 	TeacherService TeacherService;
+	@Autowired
+	TeachingService teachingService;
 
 	@RequestMapping(value = "admin/allTeacher")
 	public ModelAndView student() {
@@ -95,18 +99,15 @@ public class TeacherController {
 
 	@RequestMapping(value = "admin/detailTeacher/{id}", method = RequestMethod.GET)
 	public ModelAndView detailClassView(@PathVariable("id") String id) {
-		TeacherDto obj = TeacherService.findById(id);
 		ModelAndView mv = new ModelAndView("teacher/listClassTeaching");
-		mv.addObject("obj", obj);
-		mv.addObject("totalStudent", 10);
-		mv.addObject("title", "listClassTeaching");
+		mv.addObject("listClass",teachingService.getAllClass(id));
 		return mv;
 	}
 
 	@RequestMapping(value = "/admin/deleteTeacher", method = RequestMethod.GET)
-	public ModelAndView deleteClass(@RequestParam("idTeacher") String id) {
+	public ModelAndView deleteTeacher(@RequestParam("idTeacher") String id) {
 		TeacherService.delete(id);
-		return new ModelAndView("redirect:/allTeacher");
+		return new ModelAndView("redirect:/admin/allTeacher");
 	}
 
 }

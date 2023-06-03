@@ -16,9 +16,9 @@
 </head>
 
 <script type="text/javascript">
-	function doDelete(id) {
-		if (confirm("are you sure to delete teacher with ID=" + id)) {
-			window.location = "admin/delete?idStudent=" + id;
+	function doDelete(ID_Teacher) {
+		if (confirm("are you sure to delete teacher with ID=" + ID_Teacher)) {
+			window.location = "deleteTeacher?idTeacher=" + ID_Teacher;
 		}
 	}
 </script>
@@ -67,7 +67,7 @@
 						<td>
 							<a th:href="@{/admin/updateTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Update</a> 
 							<a th:href="@{/admin/detailTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Class</a> 
-							<a class="btn btn-danger">Delete</a>
+							<a th:onclick="|doDelete('${c.ID_Teacher}')|" class="btn btn-danger">Delete</a>
 
 						</td>
 						<!-- Modal Detail-->

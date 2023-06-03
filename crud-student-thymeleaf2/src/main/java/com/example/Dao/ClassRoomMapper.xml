@@ -31,4 +31,10 @@
 		SELECT * FROM classroom
 		WHERE ID = #{id}
 	</select>
+	<select id="getAllClass" parameterType="string"
+		resultType="ClassRoomDto" resultMap="result">
+		select classroom.ID, classroom.name from classroom
+		join teaching on teaching.ID_CLASSROOM = classroom.ID
+		where teaching.ID_TEACHER = '12';
+	</select>
 </mapper>

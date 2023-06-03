@@ -29,4 +29,10 @@ public class ClassRoomDto {
 	public ClassRoomDto() {
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "ClassRoomDto [id=" + id + ", name=" + name + "]";
+	}
+	
 }
