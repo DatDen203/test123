@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.Model.LearnDto;
+
 @Repository
 public interface ILearnDao {
 	
-	public List<String> getIdClassOfOneStudent(String id);
+	public List<LearnDto> getClassOfOneStudent(String id);
 }

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.Dao.ClassRoomDao;
 import com.example.Dao.LearnDao;
+import com.example.Dao.StudentDao;
 import com.example.Model.ClassRoomDto;
+import com.example.Model.LearnDto;
 
 @Service
 public class ClassRoomService implements IClassRoomService{
@@ -16,7 +18,8 @@ public class ClassRoomService implements IClassRoomService{
 	private ClassRoomDao dao;
 	@Autowired 
 	private LearnDao daoLearn;
-	
+	@Autowired 
+	private StudentDao daoStudent;
 	
 	public List<ClassRoomDto> GetListClass(){
 		return dao.GetListClass();
@@ -32,7 +35,13 @@ public class ClassRoomService implements IClassRoomService{
 
 	@Override
 	public List<ClassRoomDto> findClassOfOneStudent(String id) {
-		List<String> idClassOfStudent = daoLearn.getIdClassOfOneStudent(id);
+		String idStudent = daoStudent.findByIdUser(id).getID();
+		List<String> idClassOfStudent = new ArrayList<>();
+		List<LearnDto> listClass = daoLearn.getClassOfOneStudent(idStudent);
+		for(LearnDto x : listClass) {
+			idClassOfStudent.add(x.getId_classroom());
+		}
+				
 		List<ClassRoomDto> classOfStudent = new ArrayList<>();
 		for(String x : idClassOfStudent) {
 			classOfStudent.add(dao.findById(x));
