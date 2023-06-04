@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.Model.ClassRoomDto;
 import com.example.Model.TeacherDto;
 import com.example.Service.TeacherService;
 import com.example.Service.TeachingService;
@@ -97,13 +96,19 @@ public class TeacherController {
 	 * "Detail Teacher"); return mv; }
 	 */
 
-	@RequestMapping(value = "admin/detailTeacher/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/list-teaching/{id}", method = RequestMethod.GET)
 	public ModelAndView detailClassView(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("teacher/listClassTeaching");
 		mv.addObject("listClass",teachingService.getAllClass(id));
 		return mv;
 	}
 
+	@RequestMapping(value = "admin/add-teaching", method = RequestMethod.GET)
+	public ModelAndView viewAddTeaching() {
+		ModelAndView mv = new ModelAndView("teacher/addClassTeaching");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/admin/deleteTeacher", method = RequestMethod.GET)
 	public ModelAndView deleteTeacher(@RequestParam("idTeacher") String id) {
 		TeacherService.delete(id);

@@ -35,13 +35,13 @@
 				<div style="display: flex;">
 					<a class="navbar-brand" th:href="@{/allClass}">List Of Class</a> <a
 						th:href="@{/admin/addClass}"> <img alt="img add"
-						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
-						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
+						src="https://cdn-icons-png.flaticon.com/128/720/720307.png"
+						style="width: 35px; height: 35px; margin-top: 5px"></a>
 				</div>
 				<form th:action="@{/admin/searchClass}" method="GET" class="d-flex">
 					<input class="form-control me-2" name="fullname"
 						placeholder="search by name" style="width: 300px" />
-					<button class="btn btn-outline-success" type="submit">Search</button>
+					<button class="btn btn-outline-success" type="submit" style="margin: 0px"	>Search</button>
 				</form>
 			</div>
 		</nav>
@@ -71,7 +71,7 @@
 						<a  th:href="@{/admin/updateClass/{id}(id=${c.id})}"
 							class="btn btn-success">Update </a> 
 						<a th:onclick="|doDelete('${c.id}')|" class="btn btn-danger">Delete</a>
-						<a th:href="@{/admin/detailClass/{id}(id=${c.id})}"
+						<a th:href="@{/admin/list-student-of-class/{id}(id=${c.id})}"
 							class="btn btn-success">View</a> 
 						</td>
 						<!-- Modal Detail-->

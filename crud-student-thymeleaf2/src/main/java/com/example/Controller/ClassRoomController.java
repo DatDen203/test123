@@ -67,11 +67,25 @@ public class ClassRoomController {
 		mv.addObject("title", "Detail ClassRoom");
 		return mv;
 	}
+	
+	@RequestMapping(value = "admin/list-student-of-class/{id}", method = RequestMethod.GET)
+	public ModelAndView listStudentOfClass(@PathVariable("id") String id) {
+		ClassRoomDto obj = ClassRoomService.findById(id);
+		ModelAndView mv = new ModelAndView("classroom/listStudentOfClass");
+		mv.addObject("obj", obj);
+		mv.addObject("title", "list Student Of Class");
+		return mv;
+	}
 
 	@RequestMapping(value = "/admin/deleteClass", method = RequestMethod.GET)
 	public ModelAndView deleteClass(@RequestParam("idClass") String id) {
 		ClassRoomService.delete(id);
 		return new ModelAndView("redirect:/allClass");
 	}
+	@RequestMapping(value = "/admin/add-student-of-class", method= RequestMethod.GET)
+	public String addStudentOfClass() {
+		return "classroom/addStudent";
+	}
+	
 
 }
