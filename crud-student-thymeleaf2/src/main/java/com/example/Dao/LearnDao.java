@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.example.Model.LearnDto;
+
 @Repository
 public class LearnDao extends SqlSessionDaoSupport implements ILearnDao{
 
@@ -16,8 +18,8 @@ public class LearnDao extends SqlSessionDaoSupport implements ILearnDao{
 	public void setSqlSessionFactory(@Qualifier("defaultDS") SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}	
-	public List<String> getIdClassOfOneStudent(String id) {
-		return getSqlSession().selectList("LearnMapper.getIdClassOfOneStudent");
+	public List<LearnDto> getClassOfOneStudent(String id) {
+		return getSqlSession().selectList("LearnMapper.getClassOfOneStudent", id);
 	}
 
 }

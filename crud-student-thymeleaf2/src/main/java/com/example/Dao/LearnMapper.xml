@@ -10,9 +10,9 @@
 	</resultMap>
 
 
-	<select id="getIdClassOfOneStudent" parameterType="string"
-		resultType="string" resultMap="result">
-		SELECT id_classroom FROM learn
+	<select id="getClassOfOneStudent" parameterType="string"
+		resultType="LearnDto" resultMap="result">
+		SELECT * FROM learn
 		WHERE ID_STUDENT = #{id_student}
 	</select>
 	
