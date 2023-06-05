@@ -109,7 +109,7 @@ public class HomeController {
 				//đang fix, phải tự động tăng trong db
 				obj.setID(obj.getID_USER());
 				
-				//uer_role
+				//uer_role  
 				UserRoleDto objUserRole = new UserRoleDto();
 				//set id_role = user = 2, admin = 1
 				objUserRole.setId_role(2);
