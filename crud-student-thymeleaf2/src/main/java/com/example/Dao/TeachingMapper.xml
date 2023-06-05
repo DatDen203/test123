@@ -7,8 +7,8 @@
 		<result property="ID" column="ID" />
 		<result property="ID_Teacher" column="ID_TEACHER" />
 		<result property="ID_Classroom" column="ID_CLASSROOM" />
-		<result property="teachingTime" column="teachingTime" />
-		<result property="teachingDate" column="teachingDate" />
+		<!-- <result property="teachingTime" column="teachingTime" />
+		<result property="teachingDate" column="teachingDate" /> -->
 	</resultMap>
 
 	<resultMap type="ClassRoomDto" id="result2">
@@ -23,5 +23,18 @@
 		join teaching on teaching.ID_CLASSROOM = classroom.ID
 		where teaching.ID_TEACHER = #{ID_Teacher};
 	</select>
-
+	
+	<select id="getClassDontTeaching" parameterType="string"
+		resultType="ClassRoomDto" resultMap="result2">
+		 select classroom.ID,
+		classroom.name from classroom
+        where classroom.id not in (
+		   select teaching.id_classroom from teaching 
+		   where teaching.ID_TEACHER = #{ID_Teacher});
+	</select>
+	
+	<insert id="addClassTeacher" parameterType="TeachingDto" >
+		INSERT INTO teaching (ID_TEACHER, ID_CLASSROOM)
+		VALUES (#{ID_Teacher}, #{ID_Classroom});
+	</insert>
 </mapper>

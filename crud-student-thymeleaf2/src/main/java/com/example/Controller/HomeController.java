@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.Model.StudentDto;
 import com.example.Model.UserDto;
 import com.example.Model.UserRoleDto;
+import com.example.Service.AuthenticationServiceImpl;
 import com.example.Service.StudentServiceImpl;
 import com.example.Service.UserRoleService;
 import com.example.Service.UserService;
-import com.example.Service.AuthenticationServiceImpl;
 
 @Controller
 public class HomeController {
@@ -35,6 +36,8 @@ public class HomeController {
 	UserRoleService UserRoleService;
 	@Autowired
 	AuthenticationServiceImpl authenticationService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -101,12 +104,12 @@ public class HomeController {
 				strNgaySinh = strNgaySinh.replace("-", "");
 				
 				//password của user
-				objUser.setPass(strNgaySinh);
+				objUser.setPass(passwordEncoder.encode(strNgaySinh).toString());
 				
 				//đang fix, phải tự động tăng trong db
 				obj.setID(obj.getID_USER());
 				
-				//uer_role
+				//uer_role  
 				UserRoleDto objUserRole = new UserRoleDto();
 				//set id_role = user = 2, admin = 1
 				objUserRole.setId_role(2);

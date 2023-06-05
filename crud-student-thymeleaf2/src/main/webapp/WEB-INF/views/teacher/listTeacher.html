@@ -66,7 +66,7 @@
 						<td th:text="${c.major}"></td>
 						<td>
 							<a th:href="@{/admin/updateTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Update</a> 
-							<a th:href="@{/admin/detailTeacher/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Class</a> 
+							<a th:href="@{/admin/list-teaching/{id} (id = ${c.ID_Teacher})}" class="btn btn-success">Class</a> 
 							<a th:onclick="|doDelete('${c.ID_Teacher}')|" class="btn btn-danger">Delete</a>
 
 						</td>

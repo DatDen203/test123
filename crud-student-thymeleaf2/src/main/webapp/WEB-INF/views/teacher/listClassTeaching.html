@@ -25,12 +25,10 @@
 			style="width: 100%; padding: 7px 0px 7px 20px;">
 			<div class="container-fluid">
 				<div style="display: flex;">
-					<a class="navbar-brand" th:href="@{/list_teacher}">List
-						teaching</a> <a th:href="@{/admin/add-teaching/{id}(id=${idTeacher})}">
-						<img alt="img add"
+					<a class="navbar-brand" th:href="@{/list_teacher}">List teaching</a> <a th:href="@{/admin/add-teaching/{id}(id=${idTeacher})}"> <img
+						alt="img add"
 						src="https://cdn-icons-png.flaticon.com/128/720/720307.png"
-						style="width: 35px; height: 35px; margin-top: 5px">
-					</a>
+						style="width: 35px; height: 35px; margin-top: 5px"></a>
 				</div>
 				<form th:action="@{/searchTeacher}" method="GET" class="d-flex">
 					<input class="form-control me-2" name="fullname"
@@ -56,13 +54,10 @@
 				<tbody>
 					<tr th:each="c:${listClass}">
 						<td th:text="${c.id}"></td>
-						<td data-bs-toggle="modal" th:text="${c.name}"></td>
-						<td>
-							<!-- <a th:href="@{/admin/update_teacher}"
+						<td><!-- <a th:href="@{/admin/update_teacher}"
 							class="btn btn-success">Update</a> <a
 							th:href="@{/admin/class_teaching}" class="btn btn-success">Class</a> -->
-							<a class="btn btn-danger">Delete</a>
-						</td>
+							<a class="btn btn-danger">Delete</a></td>
 						<!-- Modal Detail-->
 						<div class="modal fade" aria-hidden="true">
 							<div class="modal-dialog">

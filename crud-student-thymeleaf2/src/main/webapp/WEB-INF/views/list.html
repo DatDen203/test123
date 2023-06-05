@@ -36,12 +36,12 @@
 					<a class="navbar-brand" th:href="@{/list}">List Of Student</a> <a
 						th:href="@{/admin/add}"> <img alt="img add"
 						src="https://cdn-icons-png.flaticon.com/512/1057/1057240.png"
-						style="width: 35px; height: 35px; margin-bottom: 5px"></a>
+						style="width: 35px; height: 35px; margin-top: 5px"></a>
 				</div>
 				<form th:action="@{/search}" method="GET" class="d-flex">
 					<input class="form-control me-2" name="fullname"
 						placeholder="search by name" style="width: 300px" />
-					<button class="btn btn-outline-success" type="submit">Search</button>
+					<button class="btn btn-outline-success" type="submit" style="margin: 0px">Search</button>
 				</form>
 			</div>
 		</nav>

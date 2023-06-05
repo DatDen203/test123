@@ -1,6 +1,7 @@
 package com.example.Model;
 
 public class UserDto {
+	
 	public String id, pass;
 
 	public String getId() {

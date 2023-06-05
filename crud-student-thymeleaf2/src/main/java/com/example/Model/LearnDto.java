@@ -2,13 +2,13 @@ package com.example.Model;
 
 public class LearnDto {
 	
-	public String id;
+	public Integer  id;
 	public String id_student;
 	public String id_classroom;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getId_student() {
@@ -23,8 +23,7 @@ public class LearnDto {
 	public void setId_classroom(String id_classroom) {
 		this.id_classroom = id_classroom;
 	}
-	public LearnDto(String id, String id_student, String id_classroom) {
-		super();
+	public LearnDto(Integer  id, String id_student, String id_classroom) {
 		this.id = id;
 		this.id_student = id_student;
 		this.id_classroom = id_classroom;
