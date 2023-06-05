@@ -6,16 +6,24 @@ public class TeachingDto {
 	private int ID;
 	private String ID_Teacher;
 	private String ID_Classroom;
-	private String teachingTime;
-	private Date teachingDate;
-	public TeachingDto(int iD, String iD_Teacher, String iD_Classroom, String teachingTime, Date teachingDate) {
+//	private String teachingTime;
+//	private Date teachingDate;
+	public TeachingDto(int iD, String iD_Teacher, String iD_Classroom) {
 		super();
 		ID = iD;
 		ID_Teacher = iD_Teacher;
 		ID_Classroom = iD_Classroom;
-		this.teachingTime = teachingTime;
-		this.teachingDate = teachingDate;
+//		this.teachingTime = teachingTime;
+//		this.teachingDate = teachingDate;
 	}
+	
+	public TeachingDto(String iD_Teacher, String iD_Classroom) {
+		ID_Teacher = iD_Teacher;
+		ID_Classroom = iD_Classroom;
+//		this.teachingTime = teachingTime;
+//		this.teachingDate = teachingDate;
+	}
+	
 	public TeachingDto() {
 		super();
 	}
@@ -37,17 +45,10 @@ public class TeachingDto {
 	public void setID_Classroom(String iD_Classroom) {
 		ID_Classroom = iD_Classroom;
 	}
-	public String getTeachingTime() {
-		return teachingTime;
-	}
-	public void setTeachingTime(String teachingTime) {
-		this.teachingTime = teachingTime;
-	}
-	public Date getTeachingDate() {
-		return teachingDate;
-	}
-	public void setTeachingDate(Date teachingDate) {
-		this.teachingDate = teachingDate;
-	}
-	
+	/*
+	 * public String getTeachingTime() { return teachingTime; } public void
+	 * setTeachingTime(String teachingTime) { this.teachingTime = teachingTime; }
+	 * public Date getTeachingDate() { return teachingDate; } public void
+	 * setTeachingDate(Date teachingDate) { this.teachingDate = teachingDate; }
+	 */
 }
