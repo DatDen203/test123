@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,20 @@ public class TeacherController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "admin/addClassTeacher/{id}", method = RequestMethod.POST)
+	public ModelAndView addClassTeacher(@RequestParam("selectedClasses") String[] selectedClasses, @PathVariable("id") String idTeacher) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("idTeacher", idTeacher);
+		mv.setViewName("redirect:/admin/list-teaching/" + idTeacher);
+		List<String> addClasses = Arrays.asList(selectedClasses);
+		for(String nameClass : addClasses) {
+			teachingService.addClassTeacher(nameClass, idTeacher);
+		}
+		return mv;
+	}
+	
+	
 
 	/*
 	 * @RequestMapping(value = "admin/detailClass/{id}", method = RequestMethod.GET)
@@ -100,12 +115,15 @@ public class TeacherController {
 	public ModelAndView detailClassView(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("teacher/listClassTeaching");
 		mv.addObject("listClass",teachingService.getAllClass(id));
+		mv.addObject("idTeacher", id);
 		return mv;
 	}
 
-	@RequestMapping(value = "admin/add-teaching", method = RequestMethod.GET)
-	public ModelAndView viewAddTeaching() {
+	@RequestMapping(value = "admin/add-teaching/{id}", method = RequestMethod.GET)
+	public ModelAndView viewAddTeaching(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("teacher/addClassTeaching");
+		mv.addObject("listClass", teachingService.getClassDontTeaching(id));
+		mv.addObject("idTeacher", id);
 		return mv;
 	}
 	

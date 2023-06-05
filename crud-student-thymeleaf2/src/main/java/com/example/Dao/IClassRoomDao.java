@@ -15,5 +15,7 @@ public interface IClassRoomDao {
 	
 	public ClassRoomDto findById(String id);
 	
+	public ClassRoomDto findByName(String name);
+	
 	public List<ClassRoomDto> getAllClass(String id);
 }

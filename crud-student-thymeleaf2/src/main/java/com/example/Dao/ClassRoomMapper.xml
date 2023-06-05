@@ -31,6 +31,12 @@
 		SELECT * FROM classroom
 		WHERE ID = #{id}
 	</select>
+	
+	<select id="findByName" parameterType="string"
+		resultType="ClassRoomDto" resultMap="result">
+		SELECT * FROM classroom
+		WHERE name = #{name}
+	</select>
 	<select id="getAllClass" parameterType="string"
 		resultType="ClassRoomDto" resultMap="result">
 		select classroom.ID, classroom.name from classroom
