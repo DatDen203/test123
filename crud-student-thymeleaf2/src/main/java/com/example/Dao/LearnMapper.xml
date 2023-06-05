@@ -16,4 +16,10 @@
 		WHERE ID_STUDENT = #{id_student}
 	</select>
 	
+	<select id="gelAllStudentOneClass" parameterType="string"
+		resultType="LearnDto" resultMap="result">
+		SELECT * FROM learn
+		WHERE ID_CLASSROOM = #{id_classroom}
+	</select>
+	
 </mapper>

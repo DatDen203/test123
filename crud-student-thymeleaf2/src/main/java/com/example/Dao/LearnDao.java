@@ -21,5 +21,9 @@ public class LearnDao extends SqlSessionDaoSupport implements ILearnDao{
 	public List<LearnDto> getClassOfOneStudent(String id) {
 		return getSqlSession().selectList("LearnMapper.getClassOfOneStudent", id);
 	}
+	
+	public List<LearnDto> gelAllStudentOneClass(String id) {
+		return getSqlSession().selectList("LearnMapper.gelAllStudentOneClass", id);
+	}
 
 }

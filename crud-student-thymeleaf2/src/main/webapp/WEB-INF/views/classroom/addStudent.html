@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div th:replace="~{/templates/menu::menu}"></div>
-	<form>
+	<!-- <form>
 		<section class="vh-100" style="background-color: #fbfbfb;">
 			<div class="container h-100">
 				<div class="row d-flex justify-content-center align-items-center"
@@ -46,7 +46,55 @@
 				</div>
 			</div>
 		</section>
-	</form>
+	</form> -->
+	
+	<div class="container mt-4">
+		<h1>Class List</h1>
+		<form th:action="@{/admin/addStudentClass/{id}(id=${idTeacher})}" method="post">
+			<ul class="list-group">
+				<li th:each="c : ${listStudent}" class="form-check"><input
+					type="checkbox" class="form-check-input"
+					th:value="${c.id}" /> <label class="form-check-label"
+					th:text="${c.id}"></label></li>
+			</ul>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
 	<div th:replace="~{/templates/footer::#footer}"></div>
 </body>
+
+<script>
+	console.log(1);
+	var form = document.querySelector('form');
+	  var selectedStudent = []; 
+	  
+	  form.addEventListener('submit', function(event) {
+		  event.preventDefault(); 
+		  
+		  
+	    var checkboxes = form.querySelectorAll('input[type=checkbox]');
+	    for (var i = 0; i < checkboxes.length; i++) {
+	      if (checkboxes[i].checked) {
+	    	  selectedStudent.push(checkboxes[i].value);
+	      }
+	    }
+
+	    if (selectedStudent.length === 0) {
+	      
+	      return false;
+	    }
+
+	    for (var k = 0; k < selectedStudent.length; k++) {
+	      var newInput = document.createElement('input');
+	      newInput.type = 'hidden';
+	      newInput.name = 'selectedStudent';
+	      newInput.value = selectedStudent[k];
+	      form.appendChild(newInput);
+	    }
+	    console.log(selectedStudent);
+	    
+	    form.submit();
+	  });
+</script>
+
 </html>

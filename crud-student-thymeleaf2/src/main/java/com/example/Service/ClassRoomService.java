@@ -11,6 +11,7 @@ import com.example.Dao.LearnDao;
 import com.example.Dao.StudentDao;
 import com.example.Model.ClassRoomDto;
 import com.example.Model.LearnDto;
+import com.example.Model.StudentDto;
 
 @Service
 public class ClassRoomService implements IClassRoomService{
@@ -59,5 +60,20 @@ public class ClassRoomService implements IClassRoomService{
 	public void update(ClassRoomDto obj) {
 		// TODO Auto-generated method stub
 		dao.update(obj);
+	}
+
+	@Override
+	public List<StudentDto> gelAllStudentOneClass(String idClass) {
+		List<String> idStudentOfClass = new ArrayList<>();
+		List<LearnDto> listLearn = daoLearn.gelAllStudentOneClass(idClass);
+		for(LearnDto x : listLearn) {
+			idStudentOfClass.add(x.getId_student());
+		}
+		
+		List<StudentDto> studentOfClass = new ArrayList<>();
+		for(String x : idStudentOfClass) {
+			studentOfClass.add(daoStudent.findById(x));
+		}
+		return studentOfClass;
 	}
 }

@@ -10,4 +10,6 @@ import com.example.Model.LearnDto;
 public interface ILearnDao {
 	
 	public List<LearnDto> getClassOfOneStudent(String id);
+	
+	public List<LearnDto> gelAllStudentOneClass(String id);
 }

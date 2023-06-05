@@ -87,14 +87,6 @@
 
 	<div class="container mt-4">
 		<h1>Class List</h1>
-
-		<!-- <form th:action="@{/search}" method="GET" class="d-flex">
-			<input class="form-control me-2" name="fullname"
-				placeholder="search by name" style="width: 300px" />
-			<button class="btn btn-outline-success" type="submit"
-				style="margin: 0px">Search</button>
-		</form> -->
-
 		<form th:action="@{/admin/addClassTeacher/{id}(id=${idTeacher})}" method="post">
 			<input id="selectedClasses" type="hidden" name="selectedClasses" />
 			<ul class="list-group">
@@ -112,33 +104,24 @@
 <script>
 	console.log(1);
 	var form = document.querySelector('form');
-	  var selectedClasses = []; // Khởi tạo một biến trống để chứa các giá trị của checkbox được chọn.
-
-	  // Lắng nghe sự kiện submit của form.
+	  var selectedClasses = []; 
+	  
 	  form.addEventListener('submit', function(event) {
-		  event.preventDefault(); // Ngăn chặn việc submit form.
-	    // Lấy tất cả các checkbox và vòng lặp qua từng checkbox để kiểm tra xem chúng có được chọn hay không.
+		  event.preventDefault(); 
+		  
+		  
 	    var checkboxes = form.querySelectorAll('input[type=checkbox]');
 	    for (var i = 0; i < checkboxes.length; i++) {
 	      if (checkboxes[i].checked) {
-	        // Nếu checkbox được chọn, thêm giá trị của nó vào mảng selectedClasses.
 	        selectedClasses.push(checkboxes[i].value);
 	      }
 	    }
 
-	    // Nếu không có checkbox nào được chọn, dừng việc submit form.
 	    if (selectedClasses.length === 0) {
 	      
 	      return false;
 	    }
 
-	    // Xóa hết các input ẩn hiện có để tránh trường hợp giá trị bị trùng lặp.
-	    var existingInputs = form.querySelectorAll('input[name=selectedClasses]');
-	    for (var j = 0; j < existingInputs.length; j++) {
-	      existingInputs[j].parentNode.removeChild(existingInputs[j]);
-	    }
-
-	    // Sử dụng vòng lặp để thêm các input ẩn với giá trị của các checkbox được chọn.
 	    for (var k = 0; k < selectedClasses.length; k++) {
 	      var newInput = document.createElement('input');
 	      newInput.type = 'hidden';

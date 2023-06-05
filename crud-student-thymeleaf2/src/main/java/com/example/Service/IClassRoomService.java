@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Model.ClassRoomDto;
+import com.example.Model.StudentDto;
 
 @Service
 public interface IClassRoomService {
@@ -26,4 +27,9 @@ public interface IClassRoomService {
 	
 	@Autowired
 	public List<ClassRoomDto> findClassOfOneStudent(String id);
+	
+	@Autowired
+	public List<StudentDto> gelAllStudentOneClass(String idClass);
+	
+	
 }
